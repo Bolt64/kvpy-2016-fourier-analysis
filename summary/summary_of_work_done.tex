@@ -1,0 +1,32 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath, amsfonts, amssymb, amsthm}
+\usepackage{hyperref}
+
+\title{Partial summary of work done in summer of 2016}
+\author{Sayantan Khan}
+
+\begin{document}
+
+\maketitle
+
+\section{Heating a disc}
+Laplace equation. Solution to Laplace equation with the appropriate boundary conditions leads naturally to Fourier series. Questions of convergence raised. Must be answered in pieces.
+
+\section{The fourier series}
+Rather than dealing with regular convergence, dealt with Abel summability of the fourier series. Poisson kernel.
+
+\section{Digression: All about kernels}
+Convolution operation. Kernels. Dirac sequences of kernels. Proved that $f \ast D_n$ converges uniformly to $f$.
+
+\section{Weaker notions of convergence}
+Master theorem showed that the fourier series is Abel summable. Now create similar kernels for finite fourier series (Dirichlet kernel) and averages of first $n$ terms (Fejér kernel). Fejér kernels form a Dirac sequence, hence the fourier series is Cesàro summable.
+
+\section{Orthonormal basis for $C(T)$}
+Proved exponential polynomials dense in $C(T)$: two different proofs using Poisson and Fejér kernels (Fejér kernel gives explicit approximation). Two line proof using Stone-Weirstrass, and a much nastier proof using Weirstrass approximation.
+
+\section{Strengthening the conditions on $f$}
+Used density result to show $\displaystyle \lim_{n \rightarrow \infty} \hat{f}(n) = 0$ for a continuous $f$ (Riemann-Lebesgue lemma). Proved the principle of localisation. Then showed that if $\hat{f}(n)$ is $O\left( \frac{1}{n} \right)$, then the fourier series converges. Subsequently showed that if $f \in C^1(T)$, then $\hat{f}(n)$ is $o\left( \frac{1}{n} \right)$
+
+\end{document}

@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath, amsfonts, amssymb, amsthm}
+\usepackage{hyperref}
+
+\title{Partial summary of work done in summer of 2016}
+\author{Sayantan Khan}
+%\date{29\textsuperscript{th} April 2016}
+
+\begin{document}
+
+\maketitle
+
+\section{Motivations and a little history}
+
+\subsection{Heating a disc}
+Consider a bounded two dimensional surface, e.g. a really thin disc. Assume the edge of the disc is maintained at some temperature, which may vary across the boundary. Since we're dealing with a disc, assume the the boundary is the set of points with coordinates $(1, \theta)$, where $\theta \in [-\pi, \pi]$. Now assume the temperature at the point $(1, \theta)$ is $f(\theta)$, where $f$ is continuous and $f(-\pi) = f(\pi)$. The system is assumed to be in a steady state, which after doing the physics essentially means:
+\begin{align*}
+    \frac{\partial^2 u}{\partial r^2} + \frac{1}{r} \frac{\partial u}{\partial r} + \frac{1}{r^2} \frac{\partial^2 u}{\partial \theta^2} = 0
+\end{align*}
+where $u(r,\theta)$ is the temperature at the point $(r, \theta)$. The partial differential equation above is called the \emph{Laplace equation}. A solution $u$ of the Laplace equation will be the temperature function only if $u$ is continuous, $u(r, \theta) = u(r, \theta + 2\pi)$ and $u(1, \theta) = f(\theta)$.
+
+A separable solution of the Laplace equation that satisfies the first two conditions is of the form
+\begin{align*}
+    u(r, \theta) = \sum_{n = -N}^{N} A_n r^{|n|}e^{in\theta}
+\end{align*}
+where $N$ is a non-negative integer. If $f$ is of the following form
+\begin{align*}
+    f(\theta) = \sum_{n = -N}^{N} A_n e^{in\theta}
+\end{align*}
+then $A_n$ is given by
+\begin{align*}
+    A_n = \frac{1}{2\pi} \int_{-\pi}^{\pi} f(t) e^{-int} dt
+\end{align*}
+If $f$ is indeed of the form mentioned above, then this method then gives the coefficients $A_n$, and consequently the solution $u$. But $f$ need not be of the form mentioned above, and in that case, the method doesn't work. Except for the fact that it's not quite true: Fourier conjectured that if one takes the coefficients all the way upto $\infty$ and $-\infty$, then the resulting series might converge to $f$. This wasn't quite correct, but a good guess (and a bold one at that) nevertheless.
+
+\subsection{The fourier series}
+Define $\hat{f}(n)$ to be the following:
+\begin{align*}
+    \hat{f}(n) = \frac{1}{2\pi} \int_{-\pi}^{\pi} f(t) e^{-int} dt
+\end{align*}
+With this new notation, Fourier's conjecture becomes
+    \begin{quote}
+    \centering The series $\displaystyle \sum_{n = -\infty}^{\infty} \hat{f}(n) e^{in\theta}$ converges to $f(\theta)$.
+    \end{quote}
+
+Consider the following series:
+\begin{align*}
+    \sum_{n = -\infty}^{\infty} \hat{f}(n) r^{|n|} e^{in\theta}
+\end{align*}
+where $r \in [0,1)$. This series can be rewritten as
+\begin{align*}
+    \frac{1}{2\pi} \sum_{n = -\infty}^{\infty} \int_{-\pi}^{\pi} r^{|n|} e^{in(\theta - t)} f(t) dt
+\end{align*}
+This series converges uniformly in $t$, hence the sum and integral can be interchanged. Interchanging the two, we get
+\begin{align*}
+    \frac{1}{2\pi} \int_{-\pi}^{\pi} \sum_{n = -\infty}^{\infty} r^{|n|} e^{in(\theta - t)} f(t) dt
+\end{align*}
+Summing up the geometric series, the above expression becomes
+\begin{align*}
+    \int_{-\pi}^{\pi} \left( \frac{1}{2\pi} \frac{1-r^2}{1 - 2r\cos(\theta - t) + r^2} \right) f(t) dt
+\end{align*}
+
+\end{document}
