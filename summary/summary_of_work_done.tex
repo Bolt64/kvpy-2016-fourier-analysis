@@ -29,4 +29,62 @@ Proved exponential polynomials dense in $C(T)$: two different proofs using Poiss
 \section{Strengthening the conditions on $f$}
 Used density result to show $\displaystyle \lim_{n \rightarrow \infty} \hat{f}(n) = 0$ for a continuous $f$ (Riemann-Lebesgue lemma). Proved the principle of localisation. Then showed that if $\hat{f}(n)$ is $O\left( \frac{1}{n} \right)$, then the fourier series converges. Subsequently showed that if $f \in C^1(T)$, then $\hat{f}(n)$ is $o\left( \frac{1}{n} \right)$
 
+\section{Computing the zeta function for positive even integers}
+Used the result that $x^2 \in C^1(T)$, hence it's fourier series converges at $x=0$ to get
+\begin{align*}
+    \sum_{n=1}^{\infty} (-1)^{n+1}\frac{1}{n^2} = \frac{\pi^2}{8}
+\end{align*}
+And a consequence of this result is that $\zeta(2) = \frac{\pi^2}{6}$. Similarly, by computing the fourier coefficients of $x^{2k}$, one can compute $\zeta(2k)$.
+
+\section{Alternative formula for $\zeta(s)$ where $s > 1$}
+An alternative formula for $\zeta(s)$ when $s>1$ is given by
+\begin{align*}
+    \zeta(s) = \prod_{p \in \mathcal{P}} \frac{1}{1 - p^{-s}}
+\end{align*}
+where $\mathcal{P}$ is the set of prime numbers.
+
+One can prove this using the fundamental theorem of arithmetic.
+
+\section{Proving Weirstrass approximation theorem from Fejér's theorem}
+From Fejér's theorem we got that trigonometric polynomials are dense in $C(T)$. It will then suffice to show that $\cos(n\theta)$ and $\sin(n\theta)$ can be approximated using polynomials on $T$. Consider the $m$\textsuperscript{th} Taylor polynomial for these functions and look at the remainder. For sufficiently large $m$, the remainder can be made smaller than a given $\varepsilon > 0$. This gives a polynomial approximation for the function and proves the proposition.
+
+\section{Showing $\bar{z}$ cannot be uniformly approximated by polynomials in $z$ in a compact set in $\mathbb{C}$}
+Without loss of generality, assume the compact set in question contains the unit circle (if it doesn't, rescaling and translation should do the trick). Now assume some polynomial $p$ $\varepsilon$ approximates $\bar{z}$ where $\varepsilon < 0.5$. In that case
+\begin{align*}
+    |zp(z) - z\bar{z}| < |z|\varepsilon
+\end{align*}
+In particular, on the unit circle, the inequality reduces to
+\begin{align*}
+    |zp(z) - 1| < \varepsilon
+\end{align*}
+This would mean for all points $x$ on the circle, the real part of $xp(x)$ lies between $0.5$ and $1.5$. But notice that if take $2(n!)$ equally spaced points on the circle, where $n$ is the degree of $zp(z)$, then the sum of $zp(z)$ over those points is $0$, which means the real part of $zp(z)$ on at least one of those points must be less than or equal to $0$. We have a contradiction.
+
+\section{Poisson summation of the normal distribution}
+The task was to show
+\begin{align*}
+    \frac{1}{\sqrt{2\pi}} \int_{\mathbb{R}} \exp\left(-\frac{x^2}{2} + i\lambda x\right) dx = \exp\left( -\frac{\lambda^2}{2} \right)
+\end{align*}
+
+Denote the value of the integral by $I(\lambda)$. The integral can be evaluated by first noting the imaginary part of the function inside the integral is odd; it goes to $0$. Performing integration by parts on the real part of the function, one notices that $I(\lambda)$ satisfies the following differential equation:
+\begin{align*}
+    \frac{dI}{d\lambda} = -\lambda I
+\end{align*}
+This gives the required expression.
+
+\section{Hausdorff moment theorem}
+The Hausdorff moment theorem states that if for continuous function $f$ and $g$ and a compact interval $I$, the following equation holds:
+\begin{align*}
+    \int_{I}x^nf(x) dx = \int_{I}x^ng(x) dx
+\end{align*}
+for all non-negative integers $n$, then $f \equiv g$ on $I$.
+
+This problem is equivalent to showing $k \equiv 0$ where $k =g-f$ which can be done by showing
+\begin{align*}
+    \int_{I}k^2(x) dx = 0
+\end{align*}
+Let $p$ be an $\varepsilon$ polynomial approximation of $k$. Then
+\begin{align*}
+    \left|\int_{I}k^2(x) dx - \int_{I}p(x) k(x) dx \right| < |I|\varepsilon
+\end{align*}
+But by the hypothesis, $\displaystyle \int_{I}p(x)k(x) dx = 0$ for all polynomials $p$. This completes the proof.
 \end{document}
