@@ -4,6 +4,17 @@
 \usepackage{amsmath, amsfonts, amssymb, amsthm}
 \usepackage{hyperref}
 
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{exmp}[thm]{Example}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+
+
 \title{Partial summary of work done in summer of 2016}
 \author{Sayantan Khan}
 
@@ -150,4 +161,26 @@ Now we use the inequalities we took for our hypotheses, and we get:
     S \geq \delta|M_A|^2 - \vep N|M_A| \geq \frac{\delta^3 N^2}{32}
 \end{align*}
 However, note that $S$ also counts the trivial progressions. There are exactly $\delta N$ trivial progressions. Hence if $\frac{\delta^3 N^2}{32} - \delta N > 0$, only then will the set contain a 3-AP. That means if $N > \frac{32}{\delta^2}$, then the set contains a three term AP.
+
+We have shown that if $N > \frac{32}{\delta^2}$, $A$ is $\vep$-uniform for $\vep < \frac{\delta^2}{8}$, and $|M_A| \geq \frac{\delta N}{4}$, then $A$ contains a three term $\integer$ progression.
+
+On the contrary, assume that $A$ does not contain a 3-AP. Then one of the above conditions must be unsatisfied. We can ignore the first condition, since we can make $N$ as large as we want, given a fixed $\delta$. That leaves the other two conditions. We'll show if either of those conditions are unsatisfied, then $[N]$ contains a sub-progression $P$, such that the $|P| \geq \frac{\delta^2 \sqrt{N}}{256}$ such that the density of $A \cap P$ is more than $\delta + \frac{\delta^2}{64}$.
+
+If $|M_A| < \frac{\delta N}{4}$, then consider the sets $L_A$ and $R_A$ defined as follows:
+\begin{align*}
+    L_A &= A \cap \left[ 0, \frac{N}{3} \right) \\
+    R_A &= A \cap \left[ \frac{2N}{3}, N \right)
+\end{align*}
+The density of $A$ in one of these sets will be greater than or equal to $\frac{9\delta}{8}$, and these sets are subprogressions of $[N]$ of length $\frac{N}{3}$. This proves the theorem if $|M_A| < \frac{\delta N}{4}$.
+
+Now consider what happens if the second condition is not satisfied, i.e. if $|\widehat{\indi}(r)| \geq \vep N$, where $\vep = \frac{\delta^2}{8}$ for some $r$. We'll need the following lemma to progress:
+\begin{lem}
+    If $|\widehat{\indi}(r)| \geq \vep N$, then there exists a non-overlapping $\znz$ progression $B$ such that $|B| > \frac{\sqrt{N}}{4}$ such that the density of $A \cap B$ in $B$ is $\delta + \frac{\vep}{4}$. 
+\end{lem}
+
+\begin{proof}
+    It's rather long, and I don't feel like writing it. It uses a bit of fourier analysis though. I'll write it formally soon.
+\end{proof}
+
+That does it, doesn't it?
 \end{document}
