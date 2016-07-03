@@ -7,6 +7,12 @@
 \title{Partial summary of work done in summer of 2016}
 \author{Sayantan Khan}
 
+\newcommand{\integer}{\mathbb{Z}}
+\newcommand{\znz}{\mathbb{Z}/N\mathbb{Z}}
+\newcommand{\indi}{\mathbf{1}_A}
+\newcommand{\indim}{\mathbf{1}_{M_A}}
+\newcommand{\vep}{\varepsilon}
+
 \begin{document}
 
 \maketitle
@@ -87,4 +93,61 @@ Let $p$ be an $\varepsilon$ polynomial approximation of $k$. Then
     \left|\int_{I}k^2(x) dx - \int_{I}p(x) k(x) dx \right| < |I|\varepsilon
 \end{align*}
 But by the hypothesis, $\displaystyle \int_{I}p(x)k(x) dx = 0$ for all polynomials $p$. This completes the proof.
+
+\section{Filler}
+Fill missing stuff here
+
+\section{Roth's Theorem}
+In very loose terms, Roth's theorem states that for a given number $0 <\delta \leq 1$, also called density, there exists a natural number $N$ such that any subset $A$ of $[N]$\footnote{$[N]$ is shorthand for the set $\{0, 1, \ldots, N-1\}$.} which has cardinality more than or equal to $\delta N$ contains a three term AP.
+
+Clearly, if the density is $1$, then the statement is quite obvious. What the following proof does is given a set $[N]$ and its subset $A$, it tries to find a large enough subset $N'$ of $[N]$ such that $N'$ is also an AP, and the density of $A \cap N'$ in $N'$ is more than $\delta$ by some fixed multiplicative factor. Once we have this capability, we iterate until the density of $A$ in some subprogression exceeds $1$, in which case we're done.
+
+What we do first is identify the set $[N]$ with the group $\mathbb{Z}/N\mathbb{Z}$ in the natural way. This way, we can also identify the subset $A$ as the subset of the group. Consider the function $\mathbf{1}_A$ from $\mathbb{Z}/N\mathbb{Z}$ to $\mathbb{C}$ which is $1$ is the argument is in $A$, otherwise $0$. Now we can do some fourier analysis since we have an $L_2$ function.
+
+Consider all the elements $x,y,z$ of $A$ such that $x+z = 2y$. Clearly, these form a 3-AP in $\mathbb{Z}/N\mathbb{Z}$. These $\mathbb{Z}/N\mathbb{Z}$ progressions need not be $\integer$ progressions. But let's find a way of counting these $\znz$ progressions nevertheless.
+
+Consider the following function:
+\begin{align*}
+    f(x,y,z) = \frac{1}{N}\sum_{k=0}^{N-1} \exp\left(-\frac{2\pi i}{N}(x -2y +z)k\right)
+\end{align*}
+Clearly, this function will be $1$ if $(x,y,z)$ form a $\znz$ progression, otherwise it will be $0$. Hence the number of such progressions is given by:
+\begin{align*}
+    S_0 &= \sum_{x,y,z \in A}f(x,y,z) \\
+    &= \sum_{x,y,z \in A} \frac{1}{N}\sum_{k=0}^{N-1} \exp\left(-\frac{2\pi i}{N}(x -2y +z)k\right) \\
+    &= \sum_{x,y,z \in [N]} \indi(x)\indi(y)\indi(z) \frac{1}{N}\sum_{k=0}^{N-1} \exp\left(-\frac{2\pi i}{N}(x -2y +z)k\right)
+\end{align*}
+Since the sums are finite, with appropriate rearrangement, we get:
+\begin{align*}
+    S_0 = \frac{1}{N} \sum_{k=0}^{N-1} \widehat{\indi}(k)^2 \widehat{\indi}(-2k)
+\end{align*}
+where $\widehat{f}(k)$ is the $k$\textsuperscript{th} fourier coefficient of $f$, which is defined by:
+\begin{align*}
+    \widehat{f}(k) = \sum_{x=0}^{N-1} f(x) \exp\left(-\frac{2\pi i}{N}kx\right)    
+\end{align*}
+It is then obvious that $\widehat{\indi}(0) = \delta N$. The original sum then becomes:
+\begin{align*}
+    S_0 = \delta^3 N^2 + \frac{1}{N} \sum_{k=1}^{N-1} \widehat{\indi}(k)^2 \widehat{\indi}(-2k)
+\end{align*}
+Without loss of generality, assume that $N$ is odd so that $-2k$ is never $0$, as $k$ goes from $1$ to $N-1$. If the $\widehat{\indi}(k)$ are bounded by a small enough number, then perhaps we can say something about the number of $\znz$ progressions in $A$. Notice that the sum $S_0$ also counts the trivial progressions. Hence the number of non-trivial progressions is $S_0 - \delta N$.
+
+Clearly, the bound on $\widehat{\indi}(k)$ depends upon $\indi$, which in turn depends upon the set $A$. We call a set $\vep$-uniform if $\widehat{\indi}(k) \leq \vep N$ for all non-zero $k$. Also, define $M_A$ to be the set $\left[\frac{N}{3}, \frac{2N}{3}\right) \cap A$. Clearly, if $x$ and $y$ belong to $M_A$, and $x,y,z$ form a $\znz$ progression, then they also form a $\integer$ progression.
+
+Now assume $A$ is $\vep$-uniform for $\vep < \frac{\delta^2}{8}$ and if $|M_A| \geq \frac{\delta N}{4}$, then the number of $\integer$ progressions $S$ is atleast $\frac{\delta^3 N^2}{32}$. Doing the same thing as we did for computing $S_0$, we get:
+\begin{align*}
+    S &\geq \frac{1}{N} \sum_{k=0}^{N-1} \widehat{\indim}(k)\widehat{\indi}(k)\widehat{\indim}(-2k) \\
+    &= \delta |M_A|^2 + \frac{1}{N} \sum_{k=1}^{N-1} \widehat{\indim}(k)\widehat{\indi}(k)\widehat{\indim}(-2k)
+\end{align*}
+Let's try to bound the second term in the sum above.
+\begin{align*}
+    \left| \sum_{k=1}^{N-1} \widehat{\indim}(k)\widehat{\indi}(k)\widehat{\indim}(-2k) \right| &\leq \vep N \sum_{k=1}^{N-1} \left|\widehat{\indim}(k)\widehat{\indim}(-2k)\right| \\
+    &\leq \vep N \left( \sum_{k=1}^{N-1} \left| \widehat{\indim}(k) \right|^2 \right)^{\frac{1}{2}} \left( \sum_{k=1}^{N-1} \left| \widehat{\indim}(-2k) \right|^2 \right)^{\frac{1}{2}} &&\text{(Cauchy-Schwarz inequality)} \\
+    &\leq \vep N \sum_{k=0}^{N-1} \left| \widehat{\indim}(k) \right|^2 \\
+    &= \vep N^2 \sum_{k=0}^{N-1} |\indim(k)|^2 &&\text{(Plancherel's equality)} \\
+    &= \vep N^2 |M_A|
+\end{align*}
+Now we use the inequalities we took for our hypotheses, and we get:
+\begin{align*}
+    S \geq \delta|M_A|^2 - \vep N|M_A| \geq \frac{\delta^3 N^2}{32}
+\end{align*}
+However, note that $S$ also counts the trivial progressions. There are exactly $\delta N$ trivial progressions. Hence if $\frac{\delta^3 N^2}{32} - \delta N > 0$, only then will the set contain a 3-AP. That means if $N > \frac{32}{\delta^2}$, then the set contains a three term AP.
 \end{document}
