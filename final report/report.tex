@@ -69,9 +69,9 @@ Here $a_n$ is called the $n$\textsuperscript{th} fourier coefficient of $f$. Sin
 \end{align*}
 where $a_n$ is defined as in equation \ref{eq:2}.
 
-The best we can hope for is for the sequence $S_N$ to converge uniformly to the function $f$, but as we shall see, that is not actually true, i.e. there are continuous functions whose fourier series diverges for some point in the domain. The next step would be either weakening the mode of convergence, i.e. instead of expecting convergence in the $L^{\infty}$ norm, one could expect convergence in weaker norms such as $L^1$ or $L^2$, or even Abel or Cesàro convergence. Another possible way to go about would be to strengthen the conditions on the function, i.e. forcing the function to be $C^1$, or even absolutely continuous ensures that the sequence $S_N$ converges uniformly to $f$.
+The best we can hope for is for the sequence $S_N$ to converge uniformly to the function $f$, but as we shall see, that is not actually true, i.e. there are continuous functions whose fourier series diverges for some point in the domain. The next step would be either weakening the mode of convergence, i.e. instead of expecting convergence in the $L^{\infty}$ norm, one could expect convergence in weaker norms such as $L^1$ or $L^2$, or even Cesàro convergence. Another possible way to go about would be to strengthen the conditions on the function, i.e. forcing the function to be $C^1$, or even absolutely continuous ensures that the sequence $S_N$ converges uniformly to $f$.
 
-\subsection{Fourier series of continuous functions are Abel and Cesàro summable}
+\subsection{Fourier series of continuous functions are Cesàro summable}
 Before we go on to show that fourier series converge under weaker notions of convergence, we'll develop a technique that can be used more generally to show certain sequences of functions converge uniformly. Furthermore, in all the sections that are to follow, we'll be working with continuous complex valued functions on the circle $T$, which is defined as the space $\mathbb{R}$ quotiented with the equivalence relation $\sim$ defined as
 \begin{align*}
     a \sim b \iff (a-b) = 2n\pi,\ n \in \mathbb{Z}
@@ -133,7 +133,7 @@ We saw that there is no continuous function which acts as an identity for $\ast$
     \end{enumerate}
 \end{defn}
 Following from the definition, we get this very useful theorem:
-\begin{thm}
+\begin{thm}\label{th:1}
     If $\{g_n\}$ is a Dirac sequence, then for all continuous functions $f$, the sequence $\{f \ast g_n\}$ converges uniformly to $f$.
 \end{thm}
 
@@ -156,7 +156,7 @@ Following from the definition, we get this very useful theorem:
     Now consider $(f \ast g_n)(x_0)$ for some $x \in T$.
     \begin{align*}
         (f \ast g_n)(x_0) &= \int_{-\pi}^{\pi} f(x_0-t) g_n(t) dt \\
-        &= \left( \int_{-\pi}^{-\delta} f(x_0-t) g_n(t) dt + \int_{\delta}^{\pi} f(x_0-t) g_n(t) dt \right) + \int_{-\delta}^{\delta} f(x_0-t) g_n(t) dt
+        &= \left( \int_{-\pi}^{-\delta} f(x_0-t) g_n(t) dt + \int_{\delta}^{\pi} f(x_0-t) g_n(t) dt \right) + \left( \int_{-\delta}^{\delta} f(x_0-t) g_n(t) dt \right)
     \end{align*}
     Let's analyze the two terms separately. Since $-M \leq f(x_0-t) \leq M$, we can bound the first term as
     \begin{align*}
@@ -183,6 +183,67 @@ Following from the definition, we get this very useful theorem:
         f(x_0) - \vep \leq (f \ast g_n)(x_0) \leq f(x_0) + \vep
     \end{align*}
     This shows that $\{f \ast g_n\}$ converges uniformly to $f$ for all continuous $f$.
+\end{proof}
+
+This is a useful result because this will let us deal with the question of convergence of the partial fourier series of some continuous function $f$. One can write the $n$\textsuperscript{th} partial fourier series as the convolution of $f$ with some function $g_n$, called a kernel, and if one shows that the kernels $g_n$ form a Dirac sequence, then the fourier series also converges.
+
+\subsubsection{Cesàro summability}
+We mentioned that for general continuous functions, their fourier series need not converge uniformly, or even pointwise, to the function; weakening the notion of convergence lets the conjecture go through. A weaker notion of convergence for infinite sums is the notion of Cesàro summability.
+\begin{defn}
+    A sequence $\{x_n\}$ is said to be Cesàro summable if the following sequence $\{\sigma_n\}$ converges:
+    \begin{align*}
+        \sigma_n = \frac{\sum_{k=1}^{n} s_k }{n}
+    \end{align*}
+    where $s_k$ is the $k$\textsuperscript{th} partial sum of the sequence $\{x_n\}$. If the sequence $\{ \sigma_n \}$ converges to $L$, then $L$ is called the Cesàro sum of $\{x_n\}$.
+\end{defn}
+
+It's easy to see that if the series $\displaystyle \sum_{k=1}^{n} x_n$ converges, then the Cesàro sums also converge to the same limit. To show it is a strictly weaker notion of convergence, consider the sequence $x_n = (-1)^n$. Clearly, the partial sums of $x_n$ do not converge, but the Cesàro sums do converge to $\frac{1}{2}$.
+
+\subsubsection{The Fejér kernel}
+As outlined in a previous subsection, one would like to find functions $g_N$ such that
+\begin{align*}
+    (f \ast g_N)(\theta) = \sum_{n = -N}^{N} a_n e^{in\theta}
+\end{align*}
+where $a_n$ is the $n$\textsuperscript{th} fourier coefficient of $f$. Rewriting the above sum, we get
+\begin{align*}
+    \sum_{n = -N}^{N} a_n e^{in\theta} = \sum_{n = -N}^{N} \left( \frac{1}{2\pi} \int_{-\pi}^{\pi} f(t) e^{-int} dt \right) e^{in\theta}
+\end{align*}
+Since this is a finite sum, we can exchange the sum and the integral to get
+\begin{align*}
+    \sum_{n = -N}^{N} a_n e^{in\theta} = \int_{-\pi}^{\pi} \left( \frac{1}{2\pi} \sum_{n = -N}^{N} e^{in(\theta - t)} \right) f(t) dt
+\end{align*}
+
+Summing up the geometric series, we get
+\begin{align*}
+    \frac{1}{2\pi} \sum_{n = -N}^{N} e^{int} = \frac{1}{2\pi} \frac{\sin\left( Nt + \frac{t}{2} \right)}{\sin\left( \frac{t}{2} \right)}
+\end{align*}
+
+The function $g_N$ we wanted was is this function
+\begin{align*}
+    g_N(t) = \frac{1}{2\pi} \frac{\sin\left( Nt + \frac{t}{2} \right)}{\sin\left( \frac{t}{2} \right)}
+\end{align*}
+$g_N$ certainly is even, and its integral over $T$ is $1$, but it is not non-negative everywhere, hence it fails to form a Dirac sequence. Let's look at the Cesàro partial sums instead, and concentrates on the kernel corresponding to those, which are called Fejér kernels. Clearly, the kernel corresponding to the $N$\textsuperscript{th} Cesàro sum would be the following:
+\begin{align*}
+    F_N = \frac{\sum_{n=1}^{N} g_n}{N} 
+\end{align*}
+Summing up the geometric progression once again, we get the following closed form expression for $F_N$:
+\begin{align*}
+    F_N(t) &= \frac{1}{2N\pi} \frac{\sin^2 \left( \frac{Nt}{2} \right)}{\sin^2 \left( \frac{t}{2} \right)} \\
+    & = \frac{1}{2N\pi} \frac{1 - \cos(nt)}{1 - \cos(t)}
+\end{align*}
+It follows that $F_N$ is even and its integral over $T$ is $1$. Furthermore, it is non-negative, and finally we have the following inequality for $0 < \delta < |t| \leq \pi$
+\begin{align*}
+    \frac{1}{2N\pi} \frac{1 - \cos(nt)}{1 - \cos(t)} &\leq \frac{1}{2N\pi} \frac{2}{1 - \cos(t)} \\
+    &\leq \frac{1}{N\pi} \frac{1}{1 - \cos(\delta)}
+\end{align*}
+This shows that $\{F_N\}$ satisfies all the conditions required to be a Dirac sequence. This easily leads to the following result.
+
+\begin{thm}[Fejér's Theorem]
+    The fourier series of a continuous function is Cesàro summable, and the partial Cesàro sums converge uniformly to $f$.
+\end{thm}
+
+\begin{proof}
+    The Fejér kernels form a Dirac sequence. Now use the result of theorem \ref{th:1}.
 \end{proof}
 
 \newpage
