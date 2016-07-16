@@ -25,6 +25,7 @@
 \date{July 2016}
 
 \newcommand{\vep}{\varepsilon}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 
 \begin{document}
 
@@ -32,7 +33,7 @@
 
 \newpage
 
-\section{Convergence results for fourier series}
+\section{Convergence results for Fourier series}
 
 \subsection{A historical perspective}
 Fourier series made their first appearance in mathematics through the way of physics, as is the norm with a lot of classical analysis. In particular, they turned up in the analysis of the following differential equation:
@@ -57,22 +58,21 @@ equation \ref{eq:1} is easy to solve, and one sees that it has solutions of the 
 \end{align*}
 for all integers $n$. And finite linear combinations of the solutions $u_n$ are also solutions to the differential equation \ref{eq:1}. But there is one problem. Not every continuous function $f$ on $[-\pi, \pi]$ is a finite linear combination of $e^{in\theta}$, e.g. $|x|$. Leaving that problem aside for now, one notes that if $f$ is of the form
 \begin{align*}
-    f(\theta) = \sum_{n = -N}^{N} a_n e^{in\theta}
+    f(\theta) = \sum_{n = -N}^{N} \widehat{f}(n) e^{in\theta}
 \end{align*}
-then $a_n$ is can be determined in the following manner:
+then $\widehat{f}(n)$ is can be determined in the following manner:
 \begin{align}
-    a_n = \frac{1}{2\pi} \int_{-\pi}^{\pi} f(t) e^{-int} dt \label{eq:2}
+    \widehat{f}(n) = \frac{1}{2\pi} \int_{-\pi}^{\pi} f(t) e^{-int} dt \label{eq:2}
 \end{align}
-Here $a_n$ is called the $n$\textsuperscript{th} fourier coefficient of $f$. Since we assumed that $f$ is a finite linear combination of $e^{-in\theta}$, that means it has only finitely many non-zero coefficients. Contrariwise, continuous functions that are not finte linear combinations of $e^{in\theta}$ must have infinitely many non-zero fourier coefficients. Could it perhaps be that $f$ is an \emph{infinite} linear combination of $e^{in\theta}$? To be more precise, does the following sequence converge to $f$ (in an appropriate sense) as $N$ goes to $\infty$?
+Here $\widehat{f}(n)$ is called the $n$\textsuperscript{th} Fourier coefficient of $f$. Since we assumed that $f$ is a finite linear combination of $e^{-in\theta}$, that means it has only finitely many non-zero coefficients. Contrariwise, continuous functions that are not finte linear combinations of $e^{in\theta}$ must have infinitely many non-zero Fourier coefficients. Could it perhaps be that $f$ is an \emph{infinite} linear combination of $e^{in\theta}$? To be more precise, does the following sequence converge to $f$ (in an appropriate sense) as $N$ goes to $\infty$?
 \begin{align*}
-    S_N(\theta) = \sum_{n = -N}^{N} a_n e^{in\theta}
+    S_N(\theta) = \sum_{n = -N}^{N} \widehat{f}(n) e^{in\theta}
 \end{align*}
-where $a_n$ is defined as in equation \ref{eq:2}.
 
-The best we can hope for is for the sequence $S_N$ to converge uniformly to the function $f$, but as we shall see, that is not actually true, i.e. there are continuous functions whose fourier series diverges for some point in the domain. The next step would be either weakening the mode of convergence, i.e. instead of expecting convergence in the $L^{\infty}$ norm, one could expect convergence in weaker norms such as $L^1$ or $L^2$, or even Cesàro convergence. Another possible way to go about would be to strengthen the conditions on the function, i.e. forcing the function to be $C^1$, or even absolutely continuous ensures that the sequence $S_N$ converges uniformly to $f$.
+The best we can hope for is for the sequence $S_N$ to converge uniformly to the function $f$, but as we shall see, that is not actually true, i.e. there are continuous functions whose Fourier series diverges for some point in the domain. The next step would be either weakening the mode of convergence, i.e. instead of expecting convergence in the $L^{\infty}$ norm, one could expect convergence in weaker norms such as $L^1$ or $L^2$, or even Cesàro convergence. Another possible way to go about would be to strengthen the conditions on the function, i.e. forcing the function to be $C^1$, or even absolutely continuous ensures that the sequence $S_N$ converges uniformly to $f$.
 
 \subsection{Fourier series of continuous functions are Cesàro summable}
-Before we go on to show that fourier series converge under weaker notions of convergence, we'll develop a technique that can be used more generally to show certain sequences of functions converge uniformly. Furthermore, in all the sections that are to follow, we'll be working with continuous complex valued functions on the circle $T$, which is defined as the space $\mathbb{R}$ quotiented with the equivalence relation $\sim$ defined as
+Before we go on to show that Fourier series converge under weaker notions of convergence, we'll develop a technique that can be used more generally to show certain sequences of functions converge uniformly. Furthermore, in all the sections that are to follow, we'll be working with continuous complex valued functions on the circle $T$, which is defined as the space $\mathbb{R}$ quotiented with the equivalence relation $\sim$ defined as
 \begin{align*}
     a \sim b \iff (a-b) = 2n\pi,\ n \in \mathbb{Z}
 \end{align*}
@@ -138,7 +138,7 @@ Following from the definition, we get this very useful theorem:
 \end{thm}
 
 \begin{proof}
-    Pick any $\vep > 0$. We need to show there exists an $N$ such that for all $n > N$, $|(f \ast g_n) - f|_\infty < \vep$. Pick a particular continuous function $f$. Let $M$ be the maximum of $|f|$ on $T$. Pick $\vep_1 > 0$ and $\vep_2 > 0$ such that
+    Pick any $\vep > 0$. We need to show there exists an $N$ such that for all $n > N$, $\norm{(f \ast g_n) - f}_\infty < \vep$. Pick a particular continuous function $f$. Let $M$ be the maximum of $|f|$ on $T$. Pick $\vep_1 > 0$ and $\vep_2 > 0$ such that
     \begin{align}
         \vep_1 \vep_2 + \vep_2 + 2M\vep_1 < \vep \label{eq:3}
     \end{align}
@@ -185,10 +185,10 @@ Following from the definition, we get this very useful theorem:
     This shows that $\{f \ast g_n\}$ converges uniformly to $f$ for all continuous $f$.
 \end{proof}
 
-This is a useful result because this will let us deal with the question of convergence of the partial fourier series of some continuous function $f$. One can write the $n$\textsuperscript{th} partial fourier series as the convolution of $f$ with some function $g_n$, called a kernel, and if one shows that the kernels $g_n$ form a Dirac sequence, then the fourier series also converges.
+This is a useful result because this will let us deal with the question of convergence of the partial Fourier series of some continuous function $f$. One can write the $n$\textsuperscript{th} partial Fourier series as the convolution of $f$ with some function $g_n$, called a kernel, and if one shows that the kernels $g_n$ form a Dirac sequence, then the Fourier series also converges.
 
 \subsubsection{Cesàro summability}
-We mentioned that for general continuous functions, their fourier series need not converge uniformly, or even pointwise, to the function; weakening the notion of convergence lets the conjecture go through. A weaker notion of convergence for infinite sums is the notion of Cesàro summability.
+We mentioned that for general continuous functions, their Fourier series need not converge uniformly, or even pointwise, to the function; weakening the notion of convergence lets the conjecture go through. A weaker notion of convergence for infinite sums is the notion of Cesàro summability.
 \begin{defn}
     A sequence $\{x_n\}$ is said to be Cesàro summable if the following sequence $\{\sigma_n\}$ converges:
     \begin{align*}
@@ -202,15 +202,15 @@ It's easy to see that if the series $\displaystyle \sum_{k=1}^{n} x_n$ converges
 \subsubsection{The Fejér kernel}
 As outlined in a previous subsection, one would like to find functions $g_N$ such that
 \begin{align*}
-    (f \ast g_N)(\theta) = \sum_{n = -N}^{N} a_n e^{in\theta}
+    (f \ast g_N)(\theta) = \sum_{n = -N}^{N} \widehat{f}(n) e^{in\theta}
 \end{align*}
-where $a_n$ is the $n$\textsuperscript{th} fourier coefficient of $f$. Rewriting the above sum, we get
+where $\widehat{f}(n)$ is the $n$\textsuperscript{th} Fourier coefficient of $f$. Rewriting the above sum, we get
 \begin{align*}
-    \sum_{n = -N}^{N} a_n e^{in\theta} = \sum_{n = -N}^{N} \left( \frac{1}{2\pi} \int_{-\pi}^{\pi} f(t) e^{-int} dt \right) e^{in\theta}
+    \sum_{n = -N}^{N} \widehat{f}(n) e^{in\theta} = \sum_{n = -N}^{N} \left( \frac{1}{2\pi} \int_{-\pi}^{\pi} f(t) e^{-int} dt \right) e^{in\theta}
 \end{align*}
 Since this is a finite sum, we can exchange the sum and the integral to get
 \begin{align*}
-    \sum_{n = -N}^{N} a_n e^{in\theta} = \int_{-\pi}^{\pi} \left( \frac{1}{2\pi} \sum_{n = -N}^{N} e^{in(\theta - t)} \right) f(t) dt
+    \sum_{n = -N}^{N} \widehat{f}(n) e^{in\theta} = \int_{-\pi}^{\pi} \left( \frac{1}{2\pi} \sum_{n = -N}^{N} e^{in(\theta - t)} \right) f(t) dt
 \end{align*}
 
 Summing up the geometric series, we get
@@ -238,13 +238,76 @@ It follows that $F_N$ is even and its integral over $T$ is $1$. Furthermore, it 
 \end{align*}
 This shows that $\{F_N\}$ satisfies all the conditions required to be a Dirac sequence. This easily leads to the following result.
 
-\begin{thm}[Fejér's Theorem]
-    The fourier series of a continuous function is Cesàro summable, and the partial Cesàro sums converge uniformly to $f$.
+\begin{thm}[Fejér's Theorem] \label{th:2}
+    The Fourier series of a continuous function is Cesàro summable, and the partial Cesàro sums converge uniformly to $f$.
 \end{thm}
 
 \begin{proof}
     The Fejér kernels form a Dirac sequence. Now use the result of theorem \ref{th:1}.
 \end{proof}
+
+This result gives us two things: it tells us that the exponential polynomials (linear combinations of $e^{in\theta}$) are dense in $C(T)$, and for a given $f$ in $C(T)$, it gives us an \emph{explicit} sequence of polynomials which converge uniformly to $f$. The first result is not that impressive, since it also follows from Stone-Weierstrass theorem (exponential polynomials form a subalgebra of $C(T)$ containing a non-zero constant function and it separates points), but the Stone-Weierstrass theorem does not give an explicit sequence, which this result does.
+
+\subsection{Sufficient conditions for convergence of Fourier series}
+Now that we've established the Fourier series of continuous functions are Cesàro summable, which is a notion of convergence strictly weaker than uniform convergence, we'll proceed in the other direction, which involves strengthening conditions on the function $f$.
+
+Clearly, if the Fourier coefficients of $f$ are absolutely convergent, then that would mean the Fourier series also converges uniformly (triangle inequality). While this is rather strong condition, this does give us an idea to look at the size of Fourier coefficients in order to determine convergence. This leads us to a lemma:
+\begin{lem}
+    If $f$ is a continuous function, then
+    \begin{align*}
+        \lim_{|n| \to \infty} \widehat{f}(n) = 0
+    \end{align*}
+\end{lem}
+
+\begin{proof}
+    First step in the proof will be showing that if $f$ and $g$ are two continuous functions such that $\norm{f-g}_{\infty} < \vep$, then $|\widehat{f-g}(n)| < 2\pi \vep$. This follows from the definition of $\widehat{f-g}(n)$:
+    \begin{align*}
+        |\widehat{f-g}(n)| &= \left| \int_{-\pi}^{\pi} (f-g)(t) e^{-int} dt \right| \\
+        &\leq \int_{-\pi}^{\pi} |(f-g)(t)| \cdot |e^{-int}| dt \\
+        &< \vep \int_{-\pi}^{\pi} |e^{-int}| dt \\
+        &= 2\pi \vep
+    \end{align*}
+    
+    Pick an $\vep > 0$, and using theorem \ref{th:2}, get an exponential polynomial $g$ such that $\norm{f-g}_{\infty} < \frac{\vep}{2\pi}$. This means for all $n$, $|\widehat{f-g}(n)| < \vep$. Let the degree of $g$ be $k$. Then for $|n| > k$, $\widehat{g}(n) = 0$. That means for $|n| > k$, $|\widehat{f}(n)| = |\widehat{f-g}(n)| < \vep$. This completes the proof.
+\end{proof}
+
+This lemma tells us the that the Fourier coefficient $\widehat{f}(n)$ is $o(1)$. This is a much weaker condition than the Fourier sums being absolutely convergent, since there exist $o(1)$ sequences whose sums are not absolutely convergent, or even convergent, e.g. the harmonic series.
+
+Furthermore, we can show that Fourier coefficients of smoother functions decay faster. 
+\begin{lem}
+    If $f \in C^1(T)$, then $\widehat{f}(n)$ is in $o\left( \frac{1}{n} \right)$.
+\end{lem}
+
+\begin{proof}
+    Consider the Fourier coefficient of $f'$, which is a continous function.
+    \begin{align*}
+        \widehat{f'}(n) &= \int_{-\pi}^{\pi} f'(t) e^{-int} dt \\
+        &= \left[e^{-int} f(t) \right]_{-\pi}^{\pi} + in \int_{-\pi}^{\pi} f(t) e^{-int} dt &&\text{(Integration by parts)} \\
+        &= in\widehat{f}(n)
+    \end{align*}
+    This means 
+    \begin{align*}
+        \left| \widehat{f}(n) \right| = \left| \frac{\widehat{f'}(n)}{n} \right|
+    \end{align*}
+    Since $\widehat{f'}(n)$ is in $o(1)$, that means $\widehat{f}(n)$ is in $o\left( \frac{1}{n} \right)$.
+\end{proof}
+This leads to the following corollary.
+
+\begin{cor}
+    If $f \in C^k(T)$, then $\widehat{f}(n)$ is in $o \left( \frac{1}{n^k} \right)$.
+\end{cor}
+
+From the above result, we get that if $f \in C^2(T)$, then $\widehat{f}(n)$ is in $o\left( \frac{1}{n^2} \right)$, which means the Fourier sums are absolutely convergent, and the Fourier series converges uniformly to $f$. We have the following theorem, as a consequence.
+
+\begin{thm}
+    If $f \in C^2(T)$, then the Fourier series of $f$ converges uniformly to $f$.
+\end{thm}
+
+\begin{proof}
+    $\widehat{f}(n)$ is in $o \left( \frac{1}{n^2} \right)$. $\sum \frac{1}{n^2}$ is absolutely convergent. Hence the Fourier series converges. 
+\end{proof}
+
+The final result of this 
 
 \newpage
 
@@ -255,7 +318,7 @@ Blah
 
 \section{Roth's theorem}
 
-\subsection{Doing fourier analysis on finite cyclic groups}
+\subsection{Fourier analysis on finite cyclic groups}
 Blah
 
 \newpage
