@@ -307,7 +307,77 @@ From the above result, we get that if $f \in C^2(T)$, then $\widehat{f}(n)$ is i
     $\widehat{f}(n)$ is in $o \left( \frac{1}{n^2} \right)$. $\sum \frac{1}{n^2}$ is absolutely convergent. Hence the Fourier series converges. 
 \end{proof}
 
-The final result of this 
+The final result of this section will be that if $f$ is continuous and $\widehat{f}(n)$ is $O\left( \frac{1}{n} \right)$, the Fourier series converges uniformly to $f$. In particular, this will give us that the Fourier series of $C^1$ converge uniformly since the Fourier coefficients are in $o\left( \frac{1}{n} \right)$.
+
+\begin{thm}
+    If $f$ is a continuous function and $\widehat{f}(n)$ is $O\left( \frac{1}{n} \right)$, then the partial Fourier sums $S_n(f)$ converge uniformly to $f$ on $T$. \cite{bhatia}
+\end{thm}
+
+\begin{proof}
+    What we need to show in the proof is that the partial Fourier sums $S_n(f)$, defined as
+    \begin{align*}
+        S_n(f)(\theta) = \sum_{k = -n}^{n} \widehat{f}(k) e^{ik\theta}
+    \end{align*}
+    converge uniformly to the function $f$, if $f$ is continuous, and $\widehat{f}(k)$ is $O\left( \frac{1}{k} \right)$. What we do know is the the partial Cesàro sums $\sigma_n(f)$, defined as
+    \begin{align*}
+        \sigma_n(f)(\theta) = \frac{\sum_{k=1}^{n} S_k(\theta)}{n}
+    \end{align*}
+    do converge uniformly to $f$. What we will do in this proof is create an intermediate series $I_{(n,k)}$, between $S_n$ and $\sigma_n$, such  that $I_{(n,k)}(f)$ converges uniformly to $f$ as $n$ goes to $\infty$ for large enough $k$, and the distance between $I_{(n,k)}(f)$ and $S_m(f)$, where $kn \leq m < (k+1)n$, is less than $\frac{A}{k}$ for some constant $A$.
+    
+    Define the series $I_{(n,k)}$ as
+    \begin{align*}
+        I_{n,k}(f)(\theta) = \frac{S_{kn+1}(f)(\theta) + \ldots + S_{(k+1)n}(f)(\theta)}{n}
+    \end{align*}
+    This can be equivalently written as
+    \begin{align}
+        I_{(n,k)}(f)(\theta) &= \frac{((k+1)n + 1)\sigma_{(k+1)n + 1}(f)(\theta) - (kn + 1)\sigma_{kn + 1}(f)(\theta)}{n} \\
+        &= \left( k+1 + \frac{1}{n} \right)\sigma_{(k+1)n + 1}(f)(\theta) - \left( k + \frac{1}{n} \right)\sigma_{kn + 1}(f)(\theta) \label{eq:4}
+    \end{align}
+    Since we know that $\sigma_n(f)$ converges uniformly to $f$, expression \ref{eq:4} will also converge to $f$ as $n$ goes to $\infty$, for all $k$, although the rate of convergence will depend on $k$.
+    
+    Now consider another way of writing $I_{(n,k)}(f)(\theta)$
+    \begin{align*}
+        I_{(n,k)}(f)(\theta) = \sum_{q=-kn}^{kn} \widehat{f}(q) e^{iq\theta} + \sum_{kn < |q| \leq (k+1)n} \frac{(k+1)n + 1 - |q|}{n} \widehat{f}(q)(n) e^{iq\theta}
+    \end{align*}
+    Since $\widehat{f}(k)$ is $O\left( \frac{1}{k} \right)$, it is bounded above by $\frac{A}{k}$ for some constant $A$.
+    
+    Writing $S_m(f)(\theta)$ similarly
+    \begin{align*}
+     S_m(f)(\theta) = \sum_{q=-kn}^{kn} \widehat{f}(q) e^{iq\theta} + \sum_{kn < |q| \leq m} \widehat{f}(q)(n) e^{iq\theta}
+    \end{align*}
+    where $kn \leq m < (k+1)n$.
+    Taking their difference, we get
+    \begin{align*}
+        |I_{(n,k)}(f)(\theta) - S_m(f)(\theta)| &\leq \sum_{kn < |q| \leq (k+1)n} |\widehat{f}(q)| \\
+        &\leq 2n \cdot \frac{A}{kn} \\
+        &= \frac{2A}{k}
+    \end{align*}
+    
+    For $\vep > 0$, pick a $k$ such that $\frac{2A}{k} < \frac{\vep}{2}$. Pick an $N > k$ such that for all $n > N$,
+    \begin{align}
+        \norm{I_{(n,k)}(f) - f}_{\infty} < \frac{\vep}{2} \label{ineq:1}
+    \end{align}
+    Now pick any $m > kN$. Since $N > k$, we have the following inequality
+    \begin{align*}
+        k(n+1) < (k+1)n
+    \end{align*}
+    where $n > N$. That means for every $m > kN$, there exists $n > N$, such that
+    \begin{align*}
+        kn \leq  m < (k+1)n
+    \end{align*}
+    That means for all $m > kN$
+    \begin{align}
+        \norm{S_m(f) - I_{(n,k)}(f)}_\infty < \frac{\vep}{2} \label{ineq:2}
+    \end{align}
+    Combining inequalities \ref{ineq:1} and \ref{ineq:2}, we get
+    \begin{align*}
+        \norm{S_m(f) - f}_\infty < \vep
+    \end{align*}
+    This shows that the partial Fourier sums converge uniformly the function $f$.
+\end{proof}
+
+\subsection{A continuous function whose Fourier series diverges at a point}
+Blah
 
 \newpage
 
@@ -322,5 +392,10 @@ Blah
 Blah
 
 \newpage
+
+
+\bibliography{references}
+\bibliographystyle{amsplain}
+
 
 \end{document}
