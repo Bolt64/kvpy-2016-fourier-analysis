@@ -219,9 +219,9 @@ Summing up the geometric series, we get
 \end{align*}
 
 The function $g_N$ we wanted was is this function
-\begin{align*}
-    g_N(t) = \frac{1}{2\pi} \frac{\sin\left( Nt + \frac{t}{2} \right)}{\sin\left( \frac{t}{2} \right)}
-\end{align*}
+\begin{align}
+    g_N(t) = \frac{1}{2\pi} \frac{\sin\left( Nt + \frac{t}{2} \right)}{\sin\left( \frac{t}{2} \right)} \label{eq:5}
+\end{align}
 $g_N$ certainly is even, and its integral over $T$ is $1$, but it is not non-negative everywhere, hence it fails to form a Dirac sequence. Let's look at the Cesàro partial sums instead, and concentrates on the kernel corresponding to those, which are called Fejér kernels. Clearly, the kernel corresponding to the $N$\textsuperscript{th} Cesàro sum would be the following:
 \begin{align*}
     F_N = \frac{\sum_{n=1}^{N} g_n}{N} 
@@ -376,9 +376,35 @@ The final result of this section will be that if $f$ is continuous and $\widehat
     This shows that the partial Fourier sums converge uniformly the function $f$.
 \end{proof}
 
-\subsection{A continuous function whose Fourier series diverges at a point}
-Blah
+\subsection{A continuous function whose Fourier series diverges at a point \cite{banach}}
+The last section showed that the Fourier series of a $C^1$ function does converge; this section aims to show that that's almost the best result one can get, i.e. there do exist some pathological continuous functions whose Fourier series not only does not converge to the function uniformly, it does not even converge pointwise.
 
+Consider the sequence of kernels described in equation \ref{eq:5}
+\begin{align*}
+    g_N(t) = \frac{1}{2\pi} \frac{\sin\left( Nt + \frac{t}{2} \right)}{\sin\left( \frac{t}{2} \right)}
+\end{align*}
+where $(f \ast g_N)$ corresponds to the $N$\textsuperscript{th} partial Fourier sum of $f$. The first thing we will do is bound the $L^1$ norm of $g_N$ from below.
+\begin{align*}
+    \norm{g_N}_1 &= \frac{1}{2\pi} \int_{-\pi}^{\pi} \left| \frac{\sin \left( Nt + \frac{t}{2} \right)}{\sin \left( \frac{t}{2} \right)} \right| dt \\
+    &\geq \frac{1}{\pi} \int_{-\pi}^{\pi}\left| \frac{\sin \left( Nt + \frac{t}{2} \right)}{t} \right|dt &&\text{($|x| \geq |\sin(x)|$)} \\
+    &= \frac{1}{\pi} \int_{-\pi\left( N+\frac{1}{2} \right)}^{\pi\left( N+\frac{1}{2} \right)} \left| \frac{\sin(y)}{y} \right| dy \\
+    &> \frac{1}{\pi} \int_{-\pi\left( N+\frac{1}{2} \right)}^{-\frac{\pi}{2}} \left| \frac{\sin(y)}{y} \right| dy \\
+    &= \frac{1}{\pi} \sum_{k=1}^{\frac{N}{2}} \int_{-\pi\left( k +1 \right)}^{-\pi\left( k - 1 \right)} \left| \frac{\sin(y)}{y} \right| dy \\
+    &\geq \frac{1}{\pi} \sum_{k=1}^{\frac{N}{2}} \frac{\int_{-\pi}^{\pi} |\sin(x)|}{-\pi\left( k + \frac{1}{2} \right)} \\
+    &\geq k \log(N) &&\text{(For some $k>0$)}
+\end{align*}
+
+Now consider the function $q_N(x) = \mathrm{sign}(g_N(-x))$. In that case
+\begin{align*}
+    (q_N \ast g_N)(0) = \norm{g_N}_1
+\end{align*}
+And we can approximate $q_N$ with a continuous function whose absolute value is bounded by $1$ as closely as possible; this gives us a sequence of functions $j_N$ such that
+\begin{align*}
+    (j_N \ast g_N)(0) &\geq \norm{g_N}_1 - 1 \\
+    \norm{j_N}_\infty &\leq 1
+\end{align*}
+
+But $(j_N \ast g_N)(0)$ is just another way of writing $S_N(j_N)(0)$, and $S_N(\cdot)(0)$ is a continuous operator from the Banach space $C(T)$ with the uniform norm to the space $\mathbb{C}$. Since $\norm{g_N}_1$ is unbounded, that means the operator norm of $S_N(\cdot)(0)$ is also not uniformly bounded. But from the uniform boundedness principle, if a continuous operator from a Banach space is not uniformly bounded, it's not pointwise bounded either for some point $x$ in the domain. This means the sequence $\norm{S_N(f)(0)}$ is not bounded for some $f \in C(T)$. For that continuous function $f$, the Fourier series diverges.
 \newpage
 
 \section{Weyl's equidistribution theorem}
