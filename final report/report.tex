@@ -9,6 +9,8 @@
 \usepackage{hyperref}
 \usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry}
 
+\usepackage{bbm}
+
 \usepackage{amsmath, amsfonts, amssymb, amsthm}
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{lem}[thm]{Lemma}
@@ -408,7 +410,27 @@ But $(j_N \ast g_N)(0)$ is just another way of writing $S_N(j_N)(0)$, and $S_N(\
 \newpage
 
 \section{Weyl's equidistribution theorem}
-Blah
+In the previous section, we saw how the idea of Fourier series emerged from a physical problem; the rest of the section was devoted to establishing firm foundations for the notion of Fourier series, especially those of convergence. With the foundational work done, one can look at the applications of the theory. In this and the subsequent section, we'll look at two theorems that use Fourier analysis; the surprising thing is that both these theorems are in number theory, which is as far away from the real world, i.e. physics, as possible, if one is to believe Hardy. The fact that one can use tools that emerged in the analysis of a physical system for solving problems in number theory is a testament to the power and versatility of the tool.
+
+In this section, we'll look at Weyl's equidistribution theorem, which informally states that a sequence of multiples of an irrational number modulo $1$ is equidistributed in the interval $[0,1]$.
+
+\subsection{Equidistributed sequences}
+We'll begin by formally defining what equidistributed sequences are.
+\begin{defn}
+    A sequence $\{q_n\}$ is said to be equidistributed in the interval $[a,b]$ if
+    \begin{itemize}
+        \item $q_n \in [a,b]$ for all $n \in \mathbb{N}$.
+        \item For all subintervals $[c,d]$ of $[a,b]$
+                \begin{align*}
+                    \lim_{N \to \infty} \frac{1}{N} \sum_{k=1}^{N} \mathbbm{1}_{[c,d]}(q_k) = \frac{d-c}{b-a}
+                \end{align*}
+                where $\mathbbm{1}_{[c,d]}$ is the indicator function for the interval $[c,d]$.
+    \end{itemize}
+\end{defn}
+For now, let's just focus on the interval $[0,2\pi]$, and look for equidistributed sequences in it. Observe that the second part of the above definition can be rewritten as
+\begin{align*}
+    \lim\limits_{N \to \infty} \frac{1}{N} \sum_{k=1}^{N} \mathbbm{1}_{[c,d]}(q_k) = \frac{1}{2\pi} \int_{0}^{2\pi} \mathbbm{1}_{[c,d]}(x) dx
+\end{align*}
 
 \newpage
 
