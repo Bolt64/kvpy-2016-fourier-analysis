@@ -540,6 +540,21 @@ This result shows how to equidistribution in terms of continuous functions. The 
 \end{proof}
 
 \subsection{Weyl's equidistribution theorem: The weak version}
+The weak version of Weyl's equidistribution theorem states that the sequence
+\begin{align*}
+    q_k = kz \mod 2\pi
+\end{align*}
+is equidistributed in the interval $[0,2\pi]$ if $z$ is an irrational multiple of $\pi$. This can be shown really easily using the earlier formalisation, by looking at the exponential sums.
+\begin{align*}
+    \sum_{k=1}^{n} \exp(iakz) &= e^{iaz} \frac{1 - e^{ianz}}{1 - e^{iaz}}
+\end{align*}
+Since $z$ is an irrational multiple of $\pi$, the denominator is non-zero for all non-zero integers $a$. That means for a given $a$, the sum is bounded, hence
+\begin{align*}
+    \lim\limits_{n \to \infty} \frac{1}{n} \sum_{k=1}^{n} \exp(iakz) = 0
+\end{align*}
+and as a consequence, the sequence is equidistributed.
+
+\subsection{Weyl's equidistribution theorem: The stronger version}
 
 \newpage
 
