@@ -84,41 +84,39 @@ For two continuous functions $f$ and $g$ on $T$, we can define a binary operatio
 \begin{align*}
     (f \ast g)(x) = \int_{-\pi}^{\pi} f(x-t) g(t) dt
 \end{align*}
-It follows that the operation is commutative (substitution of variables), associative (again substitution of variable), and distributive (integration is a linear operator). It also follows that $f \ast g$ is continuous since $f$ is uniformly continuous.
-
-It's not too hard to show that this operation has no identity element.
-\begin{prop}
-    There exists no continuous function $g$ on $T$ such that for all continuous functions $f$
-    \begin{align*}
-        f \ast g = f
-    \end{align*}
-\end{prop}
-
-\begin{proof}
-    We will prove the result by showing that if such a $g$ existed, then $g(x) = 0$ for $x \neq 0$. But that would mean $g$ is non-zero on a set of measure $0$, hence $\int_T f(x-t) g(t) dt = 0$ for all $f$, which means $g$ is not the identity, hence a contradiction.
-    
-    Assume we have a continuous function $g$ such that for all continuous $f$, $f \ast g = f$. Pick any non-zero $x_0$. We claim that $g(x_0)$ must be $0$. If it's not $0$, then without loss of generality, let $g(x_0) = \vep > 0$. That means there exists a $\delta_0$ such that for all $x \in (x_0 - \delta_0, x+ \delta_0)$, $g(x) > \frac{\vep}{2}$. Let $\delta = \min(\delta_0, |x_0|)$.
-    
-    Now define a continuous function $f$ in the following manner:
-    \begin{align*}
-        f(-x) =
-        \begin{cases} 
-        \hfill 1    \hfill & \text{$x \in (x_0 - \frac{\delta}{2}, x_0 + \frac{\delta}{2})$ } \\
-        \hfill \frac{2(x - (x_0-\delta))}{\delta} \hfill & \text{ $x \in \left( x_0 - \delta, x_0 - \frac{\delta}{2} \right]$ } \\
-        \hfill \frac{2((x_0+\delta) - x)}{\delta} \hfill & \text{ $x \in \left[ x_0 + \frac{\delta}{2}, x_0 + \delta \right)$ } \\
-        \hfill 0 \hfill & \text{otherwise}
-        \end{cases}
-    \end{align*}
-    It's clear that $f(0) = 0$.
-    \begin{align*}
-        f(0) &= (f \ast g)(0) \\
-             &= \int_{-\pi}^{\pi} f(-t) g(t) dt \\
-             &\geq \int_{x - \frac{\delta}{2}}^{x + \frac{\delta}{2}} f(-t) g(t) dt \\
-             &\geq \frac{\vep \delta}{2} \\
-             &> 0
-    \end{align*}
-    But $f(0) = 0$, and $0 \not > 0$. We have a contradiction, which means $g(x) = 0$ for all $x \neq 0$. This completes the proof.
-\end{proof}
+It follows that the operation is commutative (substitution of variables), associative (again substitution of variable), and distributive (integration is a linear operator). It also follows that $f \ast g$ is continuous since $f$ is uniformly continuous. It's not too hard to show that this operation has no identity element (It can be done by showing that if such a function existed, it would take on the value $0$ for every point in its domain except $0$. But then its integral would also be $0$. Contradiction!).
+%\begin{prop}
+%    There exists no continuous function $g$ on $T$ such that for all continuous functions $f$
+%    \begin{align*}
+%        f \ast g = f
+%    \end{align*}
+%\end{prop}
+%
+%\begin{proof}
+%    We will prove the result by showing that if such a $g$ existed, then $g(x) = 0$ for $x \neq 0$. But that would mean $g$ is non-zero on a set of measure $0$, hence $\int_T f(x-t) g(t) dt = 0$ for all $f$, which means $g$ is not the identity, hence a contradiction.
+%    
+%    Assume we have a continuous function $g$ such that for all continuous $f$, $f \ast g = f$. Pick any non-zero $x_0$. We claim that $g(x_0)$ must be $0$. If it's not $0$, then without loss of generality, let $g(x_0) = \vep > 0$. That means there exists a $\delta_0$ such that for all $x \in (x_0 - \delta_0, x+ \delta_0)$, $g(x) > \frac{\vep}{2}$. Let $\delta = \min(\delta_0, |x_0|)$.
+%    
+%    Now define a continuous function $f$ in the following manner:
+%    \begin{align*}
+%        f(-x) =
+%        \begin{cases} 
+%        \hfill 1    \hfill & \text{$x \in (x_0 - \frac{\delta}{2}, x_0 + \frac{\delta}{2})$ } \\
+%        \hfill \frac{2(x - (x_0-\delta))}{\delta} \hfill & \text{ $x \in \left( x_0 - \delta, x_0 - \frac{\delta}{2} \right]$ } \\
+%        \hfill \frac{2((x_0+\delta) - x)}{\delta} \hfill & \text{ $x \in \left[ x_0 + \frac{\delta}{2}, x_0 + \delta \right)$ } \\
+%        \hfill 0 \hfill & \text{otherwise}
+%        \end{cases}
+%    \end{align*}
+%    It's clear that $f(0) = 0$.
+%    \begin{align*}
+%        f(0) &= (f \ast g)(0) \\
+%             &= \int_{-\pi}^{\pi} f(-t) g(t) dt \\
+%             &\geq \int_{x - \frac{\delta}{2}}^{x + \frac{\delta}{2}} f(-t) g(t) dt \\
+%             &\geq \frac{\vep \delta}{2} \\
+%             &> 0
+%    \end{align*}
+%    But $f(0) = 0$, and $0 \not > 0$. We have a contradiction, which means $g(x) = 0$ for all $x \neq 0$. This completes the proof.
+%\end{proof}
 
 \subsubsection{Dirac sequences}
 We saw that there is no continuous function which acts as an identity for $\ast$ operation. However, there do exist sequences of functions, such that the sequence $\{f \ast g_n\}$ converges uniformly to $f$ as $n$ goes to infinity. Such a sequence $\{g_n\}$ is called a Dirac sequence. The formal definition of a Dirac sequence is the following:
@@ -134,7 +132,7 @@ We saw that there is no continuous function which acts as an identity for $\ast$
         \end{align*}
     \end{enumerate}
 \end{defn}
-Following from the definition, we get this very useful theorem:
+Following from the definition, one gets a useful theorem:
 \begin{thm}\label{th:1}
     If $\{g_n\}$ is a Dirac sequence, then for all continuous functions $f$, the sequence $\{f \ast g_n\}$ converges uniformly to $f$.
 \end{thm}
@@ -254,28 +252,28 @@ This result gives us two things: it tells us that the exponential polynomials (l
 Now that we've established the Fourier series of continuous functions are Cesàro summable, which is a notion of convergence strictly weaker than uniform convergence, we'll proceed in the other direction, which involves strengthening conditions on the function $f$.
 
 Clearly, if the Fourier coefficients of $f$ are absolutely convergent, then that would mean the Fourier series also converges uniformly (triangle inequality). While this is rather strong condition, this does give us an idea to look at the size of Fourier coefficients in order to determine convergence. This leads us to a lemma:
-\begin{lem}
-    If $f$ is a continuous function, then
-    \begin{align*}
-        \lim_{|n| \to \infty} \widehat{f}(n) = 0
-    \end{align*}
-\end{lem}
-
-\begin{proof}
-    First step in the proof will be showing that if $f$ and $g$ are two continuous functions such that $\norm{f-g}_{\infty} < \vep$, then $|\widehat{f-g}(n)| < 2\pi \vep$. This follows from the definition of $\widehat{f-g}(n)$:
-    \begin{align*}
-        |\widehat{f-g}(n)| &= \left| \int_{-\pi}^{\pi} (f-g)(t) e^{-int} dt \right| \\
-        &\leq \int_{-\pi}^{\pi} |(f-g)(t)| \cdot |e^{-int}| dt \\
-        &< \vep \int_{-\pi}^{\pi} |e^{-int}| dt \\
-        &= 2\pi \vep
-    \end{align*}
-    
-    Pick an $\vep > 0$, and using theorem \ref{th:2}, get an exponential polynomial $g$ such that $\norm{f-g}_{\infty} < \frac{\vep}{2\pi}$. This means for all $n$, $|\widehat{f-g}(n)| < \vep$. Let the degree of $g$ be $k$. Then for $|n| > k$, $\widehat{g}(n) = 0$. That means for $|n| > k$, $|\widehat{f}(n)| = |\widehat{f-g}(n)| < \vep$. This completes the proof.
-\end{proof}
-
-This lemma tells us the that the Fourier coefficient $\widehat{f}(n)$ is $o(1)$. This is a much weaker condition than the Fourier sums being absolutely convergent, since there exist $o(1)$ sequences whose sums are not absolutely convergent, or even convergent, e.g. the harmonic series.
-
-Furthermore, we can show that Fourier coefficients of smoother functions decay faster. 
+%\begin{lem}
+%    If $f$ is a continuous function, then
+%    \begin{align*}
+%        \lim_{|n| \to \infty} \widehat{f}(n) = 0
+%    \end{align*}
+%\end{lem}
+%
+%\begin{proof}
+%    First step in the proof will be showing that if $f$ and $g$ are two continuous functions such that $\norm{f-g}_{\infty} < \vep$, then $|\widehat{f-g}(n)| < 2\pi \vep$. This follows from the definition of $\widehat{f-g}(n)$:
+%    \begin{align*}
+%        |\widehat{f-g}(n)| &= \left| \int_{-\pi}^{\pi} (f-g)(t) e^{-int} dt \right| \\
+%        &\leq \int_{-\pi}^{\pi} |(f-g)(t)| \cdot |e^{-int}| dt \\
+%        &< \vep \int_{-\pi}^{\pi} |e^{-int}| dt \\
+%        &= 2\pi \vep
+%    \end{align*}
+%    
+%    Pick an $\vep > 0$, and using theorem \ref{th:2}, get an exponential polynomial $g$ such that $\norm{f-g}_{\infty} < \frac{\vep}{2\pi}$. This means for all $n$, $|\widehat{f-g}(n)| < \vep$. Let the degree of $g$ be $k$. Then for $|n| > k$, $\widehat{g}(n) = 0$. That means for $|n| > k$, $|\widehat{f}(n)| = |\widehat{f-g}(n)| < \vep$. This completes the proof.
+%\end{proof}
+%
+%This lemma tells us the that the Fourier coefficient $\widehat{f}(n)$ is $o(1)$. This is a much weaker condition than the Fourier sums being absolutely convergent, since there exist $o(1)$ sequences whose sums are not absolutely convergent, or even convergent, e.g. the harmonic series.
+%
+%Furthermore, we can show that Fourier coefficients of smoother functions decay faster. 
 \begin{lem}
     If $f \in C^1(T)$, then $\widehat{f}(n)$ is in $o\left( \frac{1}{n} \right)$.
 \end{lem}
@@ -299,15 +297,16 @@ This leads to the following corollary.
     If $f \in C^k(T)$, then $\widehat{f}(n)$ is in $o \left( \frac{1}{n^k} \right)$.
 \end{cor}
 
-From the above result, we get that if $f \in C^2(T)$, then $\widehat{f}(n)$ is in $o\left( \frac{1}{n^2} \right)$, which means the Fourier sums are absolutely convergent, and the Fourier series converges uniformly to $f$. We have the following theorem, as a consequence.
-
-\begin{thm}
-    If $f \in C^2(T)$, then the Fourier series of $f$ converges uniformly to $f$.
-\end{thm}
-
-\begin{proof}
-    $\widehat{f}(n)$ is in $o \left( \frac{1}{n^2} \right)$. $\sum \frac{1}{n^2}$ is absolutely convergent. Hence the Fourier series converges. 
-\end{proof}
+From the above result, we get that if $f \in C^2(T)$, then $\widehat{f}(n)$ is in $o\left( \frac{1}{n^2} \right)$, which means the Fourier sums are absolutely convergent, and the Fourier series converges uniformly to $f$.
+%We have the following theorem, as a consequence.
+%
+%\begin{thm}
+%    If $f \in C^2(T)$, then the Fourier series of $f$ converges uniformly to $f$.
+%\end{thm}
+%
+%\begin{proof}
+%    $\widehat{f}(n)$ is in $o \left( \frac{1}{n^2} \right)$. $\sum \frac{1}{n^2}$ is absolutely convergent. Hence the Fourier series converges. 
+%\end{proof}
 
 The final result of this section will be that if $f$ is continuous and $\widehat{f}(n)$ is $O\left( \frac{1}{n} \right)$, the Fourier series converges uniformly to $f$. In particular, this will give us that the Fourier series of $C^1$ converge uniformly since the Fourier coefficients are in $o\left( \frac{1}{n} \right)$.
 
@@ -316,28 +315,29 @@ The final result of this section will be that if $f$ is continuous and $\widehat
 \end{thm}
 
 \begin{proof}
-    What we need to show in the proof is that the partial Fourier sums $S_n(f)$, defined as
-    \begin{align*}
-        S_n(f)(\theta) = \sum_{k = -n}^{n} \widehat{f}(k) e^{ik\theta}
-    \end{align*}
-    converge uniformly to the function $f$, if $f$ is continuous, and $\widehat{f}(k)$ is $O\left( \frac{1}{k} \right)$. What we do know is the the partial Cesàro sums $\sigma_n(f)$, defined as
-    \begin{align*}
-        \sigma_n(f)(\theta) = \frac{\sum_{k=1}^{n} S_k(\theta)}{n}
-    \end{align*}
-    do converge uniformly to $f$. What we will do in this proof is create an intermediate series $I_{(n,k)}$, between $S_n$ and $\sigma_n$, such  that $I_{(n,k)}(f)$ converges uniformly to $f$ as $n$ goes to $\infty$ for large enough $k$, and the distance between $I_{(n,k)}(f)$ and $S_m(f)$, where $kn \leq m < (k+1)n$, is less than $\frac{A}{k}$ for some constant $A$.
+%    What we need to show in the proof is that the partial Fourier sums $S_n(f)$, defined as
+%    \begin{align*}
+%        S_n(f)(\theta) = \sum_{k = -n}^{n} \widehat{f}(k) e^{ik\theta}
+%    \end{align*}
+%    converge uniformly to the function $f$, if $f$ is continuous, and $\widehat{f}(k)$ is $O\left( \frac{1}{k} \right)$. What we do know is the the partial Cesàro sums $\sigma_n(f)$, defined as
+%    \begin{align*}
+%        \sigma_n(f)(\theta) = \frac{\sum_{k=1}^{n} S_k(\theta)}{n}
+%    \end{align*}
+%    do converge uniformly to $f$. 
+    What we will do in this proof is create an intermediate series $I_{(n,k)}$, between $S_n$ and $\sigma_n$ (the partial Cesàro sums), such  that $I_{(n,k)}(f)$ converges uniformly to $f$ as $n$ goes to $\infty$ for large enough $k$, and the distance between $I_{(n,k)}(f)$ and $S_m(f)$, where $kn \leq m < (k+1)n$, is less than $\frac{A}{k}$ for some constant $A$.
     
     Define the series $I_{(n,k)}$ as
-    \begin{align*}
-        I_{n,k}(f)(\theta) = \frac{S_{kn+1}(f)(\theta) + \ldots + S_{(k+1)n}(f)(\theta)}{n}
-    \end{align*}
-    This can be equivalently written as
     \begin{align}
-        I_{(n,k)}(f)(\theta) &= \frac{((k+1)n + 1)\sigma_{(k+1)n + 1}(f)(\theta) - (kn + 1)\sigma_{kn + 1}(f)(\theta)}{n} \\
-        &= \left( k+1 + \frac{1}{n} \right)\sigma_{(k+1)n + 1}(f)(\theta) - \left( k + \frac{1}{n} \right)\sigma_{kn + 1}(f)(\theta) \label{eq:4}
+        I_{n,k}(f)(\theta) = \left( k+1 + \frac{1}{n} \right)\sigma_{(k+1)n + 1}(f)(\theta) - \left( k + \frac{1}{n} \right)\sigma_{kn + 1}(f)(\theta) \label{eq:4}
     \end{align}
+%    This can be equivalently written as
+%    \begin{align}
+%        I_{(n,k)}(f)(\theta) &= \frac{((k+1)n + 1)\sigma_{(k+1)n + 1}(f)(\theta) - (kn + 1)\sigma_{kn + 1}(f)(\theta)}{n} \\
+%        &= \left( k+1 + \frac{1}{n} \right)\sigma_{(k+1)n + 1}(f)(\theta) - \left( k + \frac{1}{n} \right)\sigma_{kn + 1}(f)(\theta) \label{eq:4}
+%    \end{align}
     Since we know that $\sigma_n(f)$ converges uniformly to $f$, expression \ref{eq:4} will also converge to $f$ as $n$ goes to $\infty$, for all $k$, although the rate of convergence will depend on $k$.
     
-    Now consider another way of writing $I_{(n,k)}(f)(\theta)$
+    Now consider another way of writing $I_{(n,k)}(f)(\theta)$ (one needs to write out all the individual terms to see this)
     \begin{align*}
         I_{(n,k)}(f)(\theta) = \sum_{q=-kn}^{kn} \widehat{f}(q) e^{iq\theta} + \sum_{kn < |q| \leq (k+1)n} \frac{(k+1)n + 1 - |q|}{n} \widehat{f}(q)(n) e^{iq\theta}
     \end{align*}
@@ -350,9 +350,9 @@ The final result of this section will be that if $f$ is continuous and $\widehat
     where $kn \leq m < (k+1)n$.
     Taking their difference, we get
     \begin{align*}
-        |I_{(n,k)}(f)(\theta) - S_m(f)(\theta)| &\leq \sum_{kn < |q| \leq (k+1)n} |\widehat{f}(q)| \\
-        &\leq 2n \cdot \frac{A}{kn} \\
-        &= \frac{2A}{k}
+        |I_{(n,k)}(f)(\theta) - S_m(f)(\theta)| &\leq \sum_{kn < |q| \leq (k+1)n} 2|\widehat{f}(q)| \\
+        &\leq 4n \cdot \frac{A}{kn} \\
+        &= \frac{4A}{k}
     \end{align*}
     
     For $\vep > 0$, pick a $k$ such that $\frac{2A}{k} < \frac{\vep}{2}$. Pick an $N > k$ such that for all $n > N$,
@@ -379,7 +379,7 @@ The final result of this section will be that if $f$ is continuous and $\widehat
 \end{proof}
 
 \subsection{A continuous function whose Fourier series diverges at a point \cite{banach}}
-The last section showed that the Fourier series of a $C^1$ function does converge; this section aims to show that that's almost the best result one can get, i.e. there do exist some pathological continuous functions whose Fourier series not only does not converge to the function uniformly, it does not even converge pointwise.
+The last section showed that the Fourier series of a $C^1$ function does converge; this section aims to show that that's almost the best result one can get, i.e. there does exist a continuous function whose Fourier series not only does not converge to the function uniformly, it does not even converge pointwise.
 
 Consider the sequence of kernels described in equation \ref{eq:5}
 \begin{align*}
@@ -390,23 +390,23 @@ where $(f \ast g_N)$ corresponds to the $N$\textsuperscript{th} partial Fourier 
     \norm{g_N}_1 &= \frac{1}{2\pi} \int_{-\pi}^{\pi} \left| \frac{\sin \left( Nt + \frac{t}{2} \right)}{\sin \left( \frac{t}{2} \right)} \right| dt \\
     &\geq \frac{1}{\pi} \int_{-\pi}^{\pi}\left| \frac{\sin \left( Nt + \frac{t}{2} \right)}{t} \right|dt &&\text{($|x| \geq |\sin(x)|$)} \\
     &= \frac{1}{\pi} \int_{-\pi\left( N+\frac{1}{2} \right)}^{\pi\left( N+\frac{1}{2} \right)} \left| \frac{\sin(y)}{y} \right| dy \\
-    &> \frac{1}{\pi} \int_{-\pi\left( N+\frac{1}{2} \right)}^{-\frac{\pi}{2}} \left| \frac{\sin(y)}{y} \right| dy \\
-    &= \frac{1}{\pi} \sum_{k=1}^{\frac{N}{2}} \int_{-\pi\left( k +1 \right)}^{-\pi\left( k - 1 \right)} \left| \frac{\sin(y)}{y} \right| dy \\
+%    &> \frac{1}{\pi} \int_{-\pi\left( N+\frac{1}{2} \right)}^{-\frac{\pi}{2}} \left| \frac{\sin(y)}{y} \right| dy \\
+    &> \frac{1}{\pi} \sum_{k=1}^{\frac{N}{2}} \int_{-\pi\left( k +1 \right)}^{-\pi\left( k - 1 \right)} \left| \frac{\sin(y)}{y} \right| dy \\
     &\geq \frac{1}{\pi} \sum_{k=1}^{\frac{N}{2}} \frac{\int_{-\pi}^{\pi} |\sin(x)|}{-\pi\left( k + \frac{1}{2} \right)} \\
     &\geq k \log(N) &&\text{(For some $k>0$)}
 \end{align*}
 
 Now consider the function $q_N(x) = \mathrm{sign}(g_N(-x))$. In that case
 \begin{align*}
-    (q_N \ast g_N)(0) = \norm{g_N}_1
+    S_N(q_N)(0) = \norm{g_N}_1
 \end{align*}
 And we can approximate $q_N$ with a continuous function whose absolute value is bounded by $1$ as closely as possible; this gives us a sequence of functions $j_N$ such that
 \begin{align*}
-    (j_N \ast g_N)(0) &\geq \norm{g_N}_1 - 1 \\
+    s_N(j_N)(0) &\geq \norm{g_N}_1 - 1 \\
     \norm{j_N}_\infty &\leq 1
 \end{align*}
 
-But $(j_N \ast g_N)(0)$ is just another way of writing $S_N(j_N)(0)$, and $S_N(\cdot)(0)$ is a continuous operator from the Banach space $C(T)$ with the uniform norm to the space $\mathbb{C}$. Since $\norm{g_N}_1$ is unbounded, that means the operator norm of $S_N(\cdot)(0)$ is also not uniformly bounded. But from the uniform boundedness principle, if a continuous operator from a Banach space is not uniformly bounded, it's not pointwise bounded either for some point $x$ in the domain. This means the sequence $\norm{S_N(f)(0)}$ is not bounded for some $f \in C(T)$. For that continuous function $f$, the Fourier series diverges.
+But $S_N(\cdot)(0)$ is a continuous operator from the Banach space $C(T)$ with the uniform norm to the space $\mathbb{C}$. Since $\norm{g_N}_1$ is unbounded, that means the operator norm of $S_N(\cdot)(0)$ is also not uniformly bounded. But from the uniform boundedness principle, if a continuous operator from a Banach space is not uniformly bounded, it's not pointwise bounded either for some point $x$ in the domain. This means the sequence $\norm{S_N(f)(0)}$ is not bounded for some $f \in C(T)$. For that continuous function $f$, the Fourier series diverges.
 \newpage
 
 \section{Weyl's equidistribution theorem}
@@ -538,6 +538,8 @@ This result shows how to equidistribution in terms of continuous functions. The 
     \end{align}
     Adding up inequalities \ref{ineq:9}, \ref{ineq:10}, and $\ref{ineq:11}$, we get our result. 
 \end{proof}
+
+\subsection{Weyl's equidistribution theorem: The weak version}
 
 \newpage
 
