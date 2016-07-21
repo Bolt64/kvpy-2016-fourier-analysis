@@ -46,7 +46,7 @@ on the unit disc, with the following boundary conditions:
 \begin{align*}
     u(1, \theta) = f(\theta)
 \end{align*}
-where $f$ is an arbitrary continous function on $[-\pi, \pi]$ and $f(-\pi) = f(\pi)$.
+where $f$ is an arbitrary continuous function on $[-\pi, \pi]$ and $f(-\pi) = f(\pi)$.
 
 Equation \ref{eq:1} is what is called the Laplace equation, which describes the temperature $u$ on a conducting surface at steady state. This naturally raises the question: What would the temperature profile on a disk look like at steady state if the boundary was maintained at some temperature $f(\theta)$. That is precisely what the described differential equation along with the boundary conditions tries to answer.
 
@@ -66,7 +66,7 @@ then $\widehat{f}(n)$ is can be determined in the following manner:
 \begin{align}
     \widehat{f}(n) = \frac{1}{2\pi} \int_{-\pi}^{\pi} f(t) e^{-int} dt \label{eq:2}
 \end{align}
-Here $\widehat{f}(n)$ is called the $n$\textsuperscript{th} Fourier coefficient of $f$. Since we assumed that $f$ is a finite linear combination of $e^{-in\theta}$, that means it has only finitely many non-zero coefficients. Contrariwise, continuous functions that are not finte linear combinations of $e^{in\theta}$ must have infinitely many non-zero Fourier coefficients. Could it perhaps be that $f$ is an \emph{infinite} linear combination of $e^{in\theta}$? To be more precise, does the following sequence converge to $f$ (in an appropriate sense) as $N$ goes to $\infty$?
+Here $\widehat{f}(n)$ is called the $n$\textsuperscript{th} Fourier coefficient of $f$. Since we assumed that $f$ is a finite linear combination of $e^{-in\theta}$, that means it has only finitely many non-zero coefficients. Contrariwise, continuous functions that are not finite linear combinations of $e^{in\theta}$ must have infinitely many non-zero Fourier coefficients. Could it perhaps be that $f$ is an \emph{infinite} linear combination of $e^{in\theta}$? To be more precise, does the following sequence converge to $f$ (in an appropriate sense) as $N$ goes to $\infty$?
 \begin{align*}
     S_N(\theta) = \sum_{n = -N}^{N} \widehat{f}(n) e^{in\theta}
 \end{align*}
@@ -160,7 +160,7 @@ Following from the definition, we get this very useful theorem:
         (f \ast g_n)(x_0) &= \int_{-\pi}^{\pi} f(x_0-t) g_n(t) dt \\
         &= \left( \int_{-\pi}^{-\delta} f(x_0-t) g_n(t) dt + \int_{\delta}^{\pi} f(x_0-t) g_n(t) dt \right) + \left( \int_{-\delta}^{\delta} f(x_0-t) g_n(t) dt \right)
     \end{align*}
-    Let's analyze the two terms separately. Since $-M \leq f(x_0-t) \leq M$, we can bound the first term as
+    Let's analyse the two terms separately. Since $-M \leq f(x_0-t) \leq M$, we can bound the first term as
     \begin{align*}
         -M\vep_1 \leq \int_{-\pi}^{-\delta} f(x_0-t) g_n(t) dt + \int_{\delta}^{\pi} f(x_0-t) g_n(t) dt \leq M\vep_1
     \end{align*}
@@ -281,7 +281,7 @@ Furthermore, we can show that Fourier coefficients of smoother functions decay f
 \end{lem}
 
 \begin{proof}
-    Consider the Fourier coefficient of $f'$, which is a continous function.
+    Consider the Fourier coefficient of $f'$, which is a continuous function.
     \begin{align*}
         \widehat{f'}(n) &= \int_{-\pi}^{\pi} f'(t) e^{-int} dt \\
         &= \left[e^{-int} f(t) \right]_{-\pi}^{\pi} + in \int_{-\pi}^{\pi} f(t) e^{-int} dt &&\text{(Integration by parts)} \\
@@ -428,9 +428,116 @@ We'll begin by formally defining what equidistributed sequences are.
     \end{itemize}
 \end{defn}
 For now, let's just focus on the interval $[0,2\pi]$, and look for equidistributed sequences in it. Observe that the second part of the above definition can be rewritten as
-\begin{align*}
-    \lim\limits_{N \to \infty} \frac{1}{N} \sum_{k=1}^{N} \mathbbm{1}_{[c,d]}(q_k) = \frac{1}{2\pi} \int_{0}^{2\pi} \mathbbm{1}_{[c,d]}(x) dx
-\end{align*}
+\begin{align}
+    \lim\limits_{N \to \infty} \frac{1}{N} \sum_{k=1}^{N} \mathbbm{1}_{[c,d]}(q_k) = \frac{1}{2\pi} \int_{0}^{2\pi} \mathbbm{1}_{[c,d]}(x) dx \label{eq:6}
+\end{align}
+
+\subsection{Weyl's criterion for equidistribution}
+The above definition for equidistributed sequences makes sense (in the manner that agrees with our intuition), it is a little cumbersome to work with, since one needs to sum the indicator function of every subinterval of $[0,2\pi]$ over the entire sequence to ensure it really is equidistributed. It would be nicer if one had a simpler, but equivalent notion for equidistribution that was easier to work with. It turns out there is one.
+
+\begin{lem} \label{lem:1}
+    A subsequence $\{q_k\}$ of $[0,2\pi]$ is equidistributed iff for every continuous function $f$ on $[0,2\pi]$
+    \begin{align*}
+        \lim\limits_{N \to \infty} \frac{1}{N} \sum_{k=1}^{N} f(q_k) = \frac{1}{2\pi} \int_{0}^{2\pi} f(x)dx
+    \end{align*}
+\end{lem}
+
+\begin{proof}
+    First we'll show that if the sequence is equidistributed then the above equation is correct. Consider \emph{simple functions}\footnote{Simple functions are functions whose range is finite. These functions can be written as linear combinations of indicator functions.} on $[0,2\pi]$. Since these functions are linear combinations of indicator functions, and the indicator functions satisfy equation \ref{eq:6}, the simple functions also satisfy that equation, i.e.
+    \begin{align*}
+        \lim\limits_{N \to \infty} \frac{1}{N} \sum_{k=1}^{N} s(q_k) = \frac{1}{2\pi} \int_{0}^{2\pi} s(x)dx
+    \end{align*}
+    where $s$ is a simple function. Also, note the fact that in the compact interval $[0, 2\pi]$, for every $\vep > 0$ and for every continuous function $f$, there exists a simple function $s$, such that $\norm{f - s}_\infty < \vep$.
+    
+    Now we'll show that for every $\vep >0$, and for every continuous function $f$, there exists an $N \in \mathbb{N}$ such that for all $n > N$
+    \begin{align*}
+        \left| \frac{1}{n} \sum_{k=1}^{n} f(q_k) - \frac{1}{2\pi} \int_{0}^{2\pi} f(x)dx \right| < \vep
+    \end{align*}
+    Pick a simple function $s$ such that $\norm{f-s}_\infty < \frac{\vep}{3}$. We'll have the following inequalities
+    \begin{align}
+        \frac{1}{2\pi}\left| \int_{0}^{2\pi} f(x)dx - \int_{0}^{2\pi} s(x)dx \right| &\leq \frac{1}{2\pi} \left| \int_{0}^{2\pi} (f(x) -s(x))dx \right| \\
+        &\leq \frac{\vep}{3} \label{ineq:3}
+    \end{align}
+    And for all $n \in \mathbb{N}$
+    \begin{align}
+        \left| \frac{1}{n} \sum_{k=1}^{n} f(q_k) - \frac{1}{n} \sum_{k=1}^{n} s(q_k) \right| &\leq \left| \frac{1}{n} \sum_{k=1}^{n} f(q_k) -s(q_k) \right| \\
+        &\leq \frac{\vep}{3} \label{ineq:4}
+    \end{align}
+    Now pick an $N$ large enough such that for all $n > N$
+    \begin{align}
+        \left| \frac{1}{n} \sum_{k=1}^{n} s(q_k) - \frac{1}{2\pi} \int_{0}^{2\pi} s(x)dx \right| < \frac{\vep}{3} \label{ineq:5}
+    \end{align}
+    Adding up inequalities \ref{ineq:3}, \ref{ineq:4}, and \ref{ineq:5}, we have the inequality we wanted.
+    
+    Now for the converse statement. The key idea here is to approximate the indicator function $\mathbbm{1}_{[c,d]}$ with an appropriate continuous function. For a given $\vep > 0$, consider the following continuous approximation for the function $\mathbbm{1}_{[c,d]}$
+    \begin{align*}
+        f(x) =
+        \begin{cases} 
+        \hfill 1    \hfill & \text{$x \in (c,d)$ } \\
+        \hfill \frac{8x - 8c + \vep}{\vep} \hfill & \text{ $x \in \left[c-\frac{\vep}{8}, c \right]$ } \\
+        \hfill \frac{8d - 8x + \vep}{\vep} \hfill & \text{ $x \in \left[d, d+\frac{\vep}{8} \right]$ } \\
+        \hfill 0 \hfill & \text{otherwise}
+        \end{cases}
+    \end{align*}
+    For all $x \in [0,2\pi]$, we have the following inequality for the function $f$
+    \begin{align*}
+        \mathbbm{1}_{[c,d]}(x) \leq f(x) \leq \mathbbm{1}_{\left[ c- \frac{\vep}{8}, d+\frac{\vep}{8} \right]}(x) 
+    \end{align*}
+    Rewriting the above inequality,
+    \begin{align*}
+        \left| f(x) - \mathbbm{1}_{[c,d]}(x) \right| \leq \mathbbm{1}_{\left[ c-\frac{\vep}{8}, c \right]}(x) + \mathbbm{1}_{\left[ d, d+\frac{\vep}{8} \right]}(x)
+    \end{align*}
+    This means there exists a large enough $N_1$, such that for all $n > N_1$
+    \begin{align*}
+        \frac{1}{n} \sum_{k=1}^{n} \left( \mathbbm{1}_{\left[ c-\frac{\vep}{8}, c \right]}(q_k) + \mathbbm{1}_{\left[ d, d+\frac{\vep}{8} \right]}(q_k) \right) \leq \frac{\vep}{3}
+    \end{align*}
+    For that same $N_1$,
+    \begin{align}
+        \left| \frac{1}{n}\sum_{k=1}^{n}\mathbbm{1}_{[c,d]}(q_k) - \frac{1}{n}\sum_{k=1}^{n}f(q_k) \right| \leq \frac{\vep}{3} \label{ineq:6}
+    \end{align}
+    Similarly,
+    \begin{align}
+        \frac{1}{2\pi} \left| \int_{0}^{2\pi} f(x) dx - \int_{0}^{2\pi}\mathbbm{1}_{[c,d]}(x)dx \right| \leq \frac{\vep}{3} \label{ineq:7}
+    \end{align}
+    Finally, because of our hypothesis, we have a large enough $N_2$ such that for all $n > N_2$,
+    \begin{align}
+        \left| \frac{1}{n}\sum_{k=1}^{n}f(q_k) - \frac{1}{2\pi}\int_{0}^{2\pi}f(x)dx \right| \leq \frac{\vep}{3} \label{ineq:8}
+    \end{align}
+    Let $N = \max(N_1, N_2)$, and adding up inequalities \ref{ineq:6}, \ref{ineq:7}, and \ref{ineq:8}, we get our result.
+    
+    This completes the proof of equivalence.
+\end{proof}
+
+This result shows how to equidistribution in terms of continuous functions. The next result will use Fejér's theorem to break up the result about continuous functions to exponential sums, giving us a much simpler formalism to work with.
+
+\begin{thm}
+    A subsequence $\{q_k\}$ of $[0,2\pi]$ is equidistributed iff for all non-zero integers $a$
+    \begin{align*}
+        \lim\limits_{n \to \infty} \frac{1}{n} \sum_{k=1}^{n} \exp(iaq_k) = 0
+    \end{align*}
+\end{thm}
+
+\begin{proof}
+    First we'll show that if the sequence is equidistributed, then the limit is $0$. Since $\exp(iax)$ is a continuous function for all $a$, from lemma \ref{lem:1}, we have
+    \begin{align*}
+        \lim\limits_{n \to \infty} \frac{1}{n} \sum_{k=1}^{n} \exp(iaq_k) &= \frac{1}{2\pi} \int_{0}^{2\pi} \exp(iax)dx \\
+        &= 0 &&\text{($a$ is non-zero)}
+    \end{align*}
+    
+    For the converse, we will use Fejér's theorem. Given a continuous $f$ and $\vep > 0$, use Fejér's theorem to find an exponential polynomial $p$ such that $\norm{p-f}_\infty < \frac{\vep}{3}$. In that case, we have
+    \begin{align}
+        \frac{1}{2\pi}\left| \int_{0}^{2\pi} f(x) dx - \int_{0}^{2\pi} p(x) dx \right| < \frac{\vep}{3}  \label{ineq:9}
+    \end{align}
+    and
+    \begin{align}
+        \left| \frac{1}{n} \sum_{k=1}^{n} f(q_k) - \frac{1}{n} \sum_{k=1}^{n} p(q_k) \right| < \frac{\vep}{3} \label{ineq:10}
+    \end{align}
+    And because of our hypothesis, we have a large enough $N$, such that for all $n > N$
+    \begin{align}
+        \left| \frac{1}{n} \sum_{k=1}^{n} p(q_k) -  \int_{0}^{2\pi} p(x) dx \right| \leq \frac{\vep}{3} \label{ineq:11}
+    \end{align}
+    Adding up inequalities \ref{ineq:9}, \ref{ineq:10}, and $\ref{ineq:11}$, we get our result. 
+\end{proof}
 
 \newpage
 
