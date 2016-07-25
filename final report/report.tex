@@ -28,6 +28,7 @@
 
 \newcommand{\vep}{\varepsilon}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\renewcommand{\Re}{\mathrm{Re}}
 
 \begin{document}
 
@@ -555,6 +556,164 @@ Since $z$ is an irrational multiple of $\pi$, the denominator is non-zero for al
 and as a consequence, the sequence is equidistributed.
 
 \subsection{Weyl's equidistribution theorem: The stronger version}
+\textbf{Note:} Since it will get a little cumbersome to keep working with integral and irrational multiples of $2\pi$, we will instead deal with sequences in the interval $[0,1]$. The only change we'll need to keep in mind is that we'll be dealing the following sum
+\begin{align*}
+     \sum_{k=1}^{n} \exp(2\pi iaq_k)
+\end{align*}
+
+The stronger version of Weyl's equidistribution theorem states that the sequence
+\begin{align*}
+    q_k = \alpha k^2 + \beta k + \gamma \mod 1
+\end{align*}
+is equidistributed if $\alpha$ is irrational.
+ 
+This will involve showing that the sequence
+\begin{align}
+    S_n = \sum_{k=1}^{n} \exp(2\pi i aq_k) \label{target:1}
+\end{align}
+is $o(n)$ for all integers $n$, but since $\alpha$ is irrational, it suffices to show it for all irrational $\alpha$. In a nutshell, we have reduced the problem of equidistribution to a problem of bounding the given sum.
+ 
+\subsubsection{A preliminary bound for another sum}
+\textbf{Notation:} We will define the function $e(x)$ to be $e(2\pi i x)$.
+
+\begin{lem}
+    For all irrational $\theta$
+    \begin{align}
+    \displaystyle \left| \sum_{k=1}^{N} e(n\theta) \right| \leq \min\left(N, \frac{1}{\norm{\theta}} \right) \label{bound:1}
+    \end{align}
+    where $\norm{\theta}$ is distance of $\theta$ to its closest integer.
+\end{lem}
+
+\begin{proof}
+    By triangle inequality,
+    \begin{align*}
+        \left| \sum_{k=1}^{N} e(n\theta) \right| & \leq \sum_{k=1}^{N} \left| e(n\theta) \right| \\
+        &= N
+    \end{align*}
+    
+    And summing up the geometric series, we have
+    \begin{align*}
+        \left| \sum_{k=1}^{N} e(n\theta) \right| &\leq \frac{2}{\left| 1- e(\theta) \right|} \\
+        &= \frac{1}{\left| \sin(\pi \theta) \right|}\\
+        &\leq \frac{1}{\norm{\theta}}
+    \end{align*}
+\end{proof}
+ 
+\subsubsection{Weyl differencing} \label{sect:1}
+Since we want to show the sum $S_N$ (see equation \ref{target:1}) is in $o(N)$, it will suffice to show that $\left| S_N \right|^2$ is in $o(N^2)$.
+\begin{align*}
+    \left| \sum_{k=1}^{N} e(f(k)) \right|^2 &= \left( \sum_{k=1}^{N} e(f(k)) \right) \left( \sum_{k=1}^{N} e(-f(k)) \right) \\
+    &= \sum_{1 \leq j,l \leq N} e(f(j) - f(l)) \\
+    &= N + \sum_{d=1}^{N-1} \sum_{k=1}^{N-d} \left( e(f(k+d) - f(k)) + e(f(k) - f(k+d)) \right) \\
+    &= N + \sum_{d=1}^{N-1} \sum_{k=1}^{N-d} 2\Re \left( e(f(k+d) - f(k)) \right) \\
+    &= N + 2 \sum_{d=1}^{N-1} \Re \left( \sum_{k=1}^{N-d} e(f(k+d) - f(k)) \right) \\
+    &\leq N + 2 \sum_{d=1}^{N-1} \left| \sum_{k=1}^{N-d} e(f(k+d) - f(k)) \right|
+\end{align*}
+Plugging in the quadratic polynomial in $f$, we get
+\begin{align*}
+    \left| \sum_{k=1}^{N} e(q_k) \right|^2 &\leq N + 2\sum_{d=1}^{N-1} \left| \sum_{k=1}^{N-d} e((2\alpha d)k) \right| \\
+    &\leq N + 2 \sum_{d=1}^{N} \min \left( N, \frac{1}{\norm{2\alpha d}} \right)
+\end{align*}
+Since $N$ is in $o(N^2)$, all we need to show is that $\displaystyle \sum_{d=1}^{N} \min\left( N, \frac{1}{\norm{2\alpha d}} \right)$ is also in $o(N^2)$.
+
+\subsubsection{Rational approximation of irrational numbers}
+The main result of this section will show that given an irrational number $\alpha$, it's possible to find infinitely many rational numbers $\frac{p}{q}$ ($\gcd(p,q) = 1$) such that $|\alpha - \frac{p}{q}| < \frac{1}{q^2}$. We will need this result to bound the main sum.
+
+\begin{prop} \label{prop:1}
+    Given an irrational number $\alpha$ and $N \in \mathbb{N}$, there exists a rational number $\frac{p}{q}$ such that
+    \begin{align*}
+        \left| \alpha - \frac{p}{q} \right| < \frac{1}{q(N+1)}
+    \end{align*}
+    and $|q| \leq N$.
+\end{prop}
+
+\begin{proof}
+    Consider the following sequence modulo $1$:
+    \begin{align*}
+        \alpha, 2\alpha, 3\alpha, \ldots, N\alpha
+    \end{align*}
+    Divide $[0,1]$ into $N+1$ equally sized intervals. Clearly, one of the elements of that sequence must either lie in the subinterval $\left[ 0, \frac{1}{N+1} \right]$, or $\left[ \frac{N}{N+1}, 1 \right]$. Call that element $q\alpha$. In that case, the following inequality holds:
+    \begin{align*}
+        \norm{q\alpha} \leq \frac{1}{N+1}
+    \end{align*}
+    Let the integer closest to $q\alpha$ be $p$. In that case
+    \begin{align*}
+        \left| p - q\alpha \right| &\leq \frac{1}{N+1} \\
+        \left| \frac{p}{q} - \alpha \right| &\leq \frac{1}{q(N+1)}
+    \end{align*}
+    And since $q < N+1$
+    \begin{align*}
+        \left| \alpha - \frac{p}{q} \right| < \frac{1}{q^2}
+    \end{align*}
+\end{proof}
+
+\begin{cor}
+    If $\alpha$ is irrational, there are infinitely many rational numbers $\frac{p}{q}$ such that
+    \begin{align*}
+        \left| \alpha - \frac{p}{q} \right| < \frac{1}{q^2}
+    \end{align*}
+\end{cor}
+
+\begin{proof}
+    Suppose there were finitely many. Take the minimal distance $d$ of $\alpha$ with the rational approximations. Pick a large enough $N$ such that $\frac{1}{N+1} < d$. Use that $N$ in proposition \ref{prop:1} and get a contradiction.
+\end{proof}
+
+\subsubsection{Bounding the complete sum\cite{weyl}}
+At the end of section \ref{sect:1}, we saw that all we need to do is to show that the following sum:
+\begin{align*}
+    W_N = \sum_{d=1}^{N} \min\left( N, \frac{1}{\norm{2\alpha d}} \right)
+\end{align*}
+is in $o(N^2)$.
+
+\begin{lem} \label{lem:2}
+    If $\alpha_1, \alpha_2, \ldots, \alpha_N$ are real numbers such that $\norm{\alpha_i - \alpha_j} \geq \frac{1}{r}$ for some natural number $r$ when $i \neq j$. Then
+    \begin{align*}
+        \sum_{i=1}^{N} \min\left( \frac{1}{\norm{\alpha_i}}, N \right) \leq 2N + 2r(\log(N) + 2)
+    \end{align*} 
+\end{lem}
+
+\begin{proof}
+    Without loss of generality, assume all the $\alpha_i$ lie within $\left[ -\frac{1}{2}, \frac{1}{2} \right]$. Furthermore, at least half the sum will either come from the positive or the negative $\alpha_i$. WLOG, assume it's the positive $\alpha_i$. Then we can just double the sum to get an upper bound. Assume that $\alpha_1 < \alpha_2 < \cdots < \alpha_n$, where $\alpha_1$ to $\alpha_n$ are the positive $\alpha_i$. In that case
+    \begin{align*}
+        \sum_{i=1}^{n}\min\left( \frac{1}{\norm{\alpha_i}}, N  \right) \leq N+ \left\lfloor \frac{r}{N} \right\rfloor N + \sum_{i > \left\lfloor \frac{r}{N} \right\rfloor} \frac{r}{i} &&\left(\text{Because $\norm{\alpha_i -\alpha_j} > \frac{1}{r}$}\right)
+    \end{align*}
+    The last term can have at most $n$ terms, hence it is bounded by $r (\log(n) + 1)$. But $n$ is smaller than or equal to $N$, since $n$ is the number of positive $\alpha_i$. Hence the last term is bounded by $r(\log(N) + 1)$. The second term is bounded by $r$, and the first term is $N$. Hence the complete bound is
+    \begin{align*}
+        \sum_{i=1}^{n}\min\left( \frac{1}{\norm{\alpha_i}}, N  \right) \leq N + r + r(\log(n) + 1)
+    \end{align*}
+    Since this is at least half the total sum, we get our bound.
+\end{proof}
+
+\begin{lem}
+    If $\frac{p}{q}$ is a rational approximation for $\alpha$ such that $\left| \alpha - \frac{p}{q} \right| < \frac{1}{q^2}$, then
+    \begin{align*}
+        \sum_{d=1}^{N} \min\left( \frac{1}{\norm{\alpha d}}, N \right) \leq \left( \frac{2N}{q}\right) \left( 2N +4q(\log(N) +2) \right)
+    \end{align*}
+\end{lem}
+
+\begin{proof}
+    We have the following inequality, which is not too hard to prove:
+    \begin{align*}
+        \norm{i\alpha - j\alpha} \geq \norm{(i-j)\frac{p}{q}} - \frac{|i-j|}{q^2} &&\left(\text{Taylor expand around $\frac{p}{q}$}\right)
+    \end{align*}
+    When $|i-j| \leq \frac{q}{2}$, then $\frac{(i-j)p}{q}$ is not an integer since $p$ and $q$ are co-prime. That means
+    \begin{align*}
+        \norm{(i-j)\frac{p}{q}} \geq \frac{1}{q}
+    \end{align*}
+    and 
+    \begin{align*}
+        \frac{|i-j|}{q^2} \leq \frac{1}{2q}
+    \end{align*}
+    which means
+    \begin{align*}
+        \norm{i\alpha - j\alpha} \geq \frac{1}{2q}
+    \end{align*}
+    Now we split up the range of summation, i.e. the interval $[1, N]$ into intervals of length $\frac{q}{2}$. To compute the sum over each of these intervals, we'll use lemma \ref{lem:2} with $r = 2q$. We'll have $\frac{2N}{q}$ such intervals, over each of which, the sum will be be bounded by $\left( 2N +4q(\log(N) +2) \right)$. The complete bound is hence
+    \begin{align*}
+        W_N \leq \left( \frac{2N}{q}\right) \left( 2N +4q(\log(N) +2) \right)
+    \end{align*}
+\end{proof}
+As $N$ goes to infinity, the $\frac{W_N}{N^2}$ becomes $\frac{2}{q}$. But since $\alpha$ is irrational, $q$ can be as large as possible. This shows that $W_N$ is in $o(N^2)$.
 
 \newpage
 
