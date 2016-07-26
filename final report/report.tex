@@ -29,6 +29,9 @@
 \newcommand{\vep}{\varepsilon}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \renewcommand{\Re}{\mathrm{Re}}
+\newcommand{\znz}{\mathbb{Z}/N\mathbb{Z}}
+\newcommand{\iprod}[2]{\langle #1, #2 \rangle}
+\newcommand{\indi}[1]{\mathbbm{#1}}
 
 \begin{document}
 
@@ -423,14 +426,14 @@ We'll begin by formally defining what equidistributed sequences are.
         \item $q_n \in [a,b]$ for all $n \in \mathbb{N}$.
         \item For all subintervals $[c,d]$ of $[a,b]$
                 \begin{align*}
-                    \lim_{N \to \infty} \frac{1}{N} \sum_{k=1}^{N} \mathbbm{1}_{[c,d]}(q_k) = \frac{d-c}{b-a}
+                    \lim_{N \to \infty} \frac{1}{N} \sum_{k=1}^{N} \indi{1}_{[c,d]}(q_k) = \frac{d-c}{b-a}
                 \end{align*}
-                where $\mathbbm{1}_{[c,d]}$ is the indicator function for the interval $[c,d]$.
+                where $\indi{1}_{[c,d]}$ is the indicator function for the interval $[c,d]$.
     \end{itemize}
 \end{defn}
 For now, let's just focus on the interval $[0,2\pi]$, and look for equidistributed sequences in it. Observe that the second part of the above definition can be rewritten as
 \begin{align}
-    \lim\limits_{N \to \infty} \frac{1}{N} \sum_{k=1}^{N} \mathbbm{1}_{[c,d]}(q_k) = \frac{1}{2\pi} \int_{0}^{2\pi} \mathbbm{1}_{[c,d]}(x) dx \label{eq:6}
+    \lim\limits_{N \to \infty} \frac{1}{N} \sum_{k=1}^{N} \indi{1}_{[c,d]}(q_k) = \frac{1}{2\pi} \int_{0}^{2\pi} \indi{1}_{[c,d]}(x) dx \label{eq:6}
 \end{align}
 
 \subsection{Weyl's criterion for equidistribution}
@@ -470,7 +473,7 @@ The above definition for equidistributed sequences makes sense (in the manner th
     \end{align}
     Adding up inequalities \ref{ineq:3}, \ref{ineq:4}, and \ref{ineq:5}, we have the inequality we wanted.
     
-    Now for the converse statement. The key idea here is to approximate the indicator function $\mathbbm{1}_{[c,d]}$ with an appropriate continuous function. For a given $\vep > 0$, consider the following continuous approximation for the function $\mathbbm{1}_{[c,d]}$
+    Now for the converse statement. The key idea here is to approximate the indicator function $\indi{1}_{[c,d]}$ with an appropriate continuous function. For a given $\vep > 0$, consider the following continuous approximation for the function $\indi{1}_{[c,d]}$
     \begin{align*}
         f(x) =
         \begin{cases} 
@@ -482,23 +485,23 @@ The above definition for equidistributed sequences makes sense (in the manner th
     \end{align*}
     For all $x \in [0,2\pi]$, we have the following inequality for the function $f$
     \begin{align*}
-        \mathbbm{1}_{[c,d]}(x) \leq f(x) \leq \mathbbm{1}_{\left[ c- \frac{\vep}{8}, d+\frac{\vep}{8} \right]}(x) 
+        \indi{1}_{[c,d]}(x) \leq f(x) \leq \indi{1}_{\left[ c- \frac{\vep}{8}, d+\frac{\vep}{8} \right]}(x) 
     \end{align*}
     Rewriting the above inequality,
     \begin{align*}
-        \left| f(x) - \mathbbm{1}_{[c,d]}(x) \right| \leq \mathbbm{1}_{\left[ c-\frac{\vep}{8}, c \right]}(x) + \mathbbm{1}_{\left[ d, d+\frac{\vep}{8} \right]}(x)
+        \left| f(x) - \indi{1}_{[c,d]}(x) \right| \leq \indi{1}_{\left[ c-\frac{\vep}{8}, c \right]}(x) + \indi{1}_{\left[ d, d+\frac{\vep}{8} \right]}(x)
     \end{align*}
     This means there exists a large enough $N_1$, such that for all $n > N_1$
     \begin{align*}
-        \frac{1}{n} \sum_{k=1}^{n} \left( \mathbbm{1}_{\left[ c-\frac{\vep}{8}, c \right]}(q_k) + \mathbbm{1}_{\left[ d, d+\frac{\vep}{8} \right]}(q_k) \right) \leq \frac{\vep}{3}
+        \frac{1}{n} \sum_{k=1}^{n} \left( \indi{1}_{\left[ c-\frac{\vep}{8}, c \right]}(q_k) + \indi{1}_{\left[ d, d+\frac{\vep}{8} \right]}(q_k) \right) \leq \frac{\vep}{3}
     \end{align*}
     For that same $N_1$,
     \begin{align}
-        \left| \frac{1}{n}\sum_{k=1}^{n}\mathbbm{1}_{[c,d]}(q_k) - \frac{1}{n}\sum_{k=1}^{n}f(q_k) \right| \leq \frac{\vep}{3} \label{ineq:6}
+        \left| \frac{1}{n}\sum_{k=1}^{n}\indi{1}_{[c,d]}(q_k) - \frac{1}{n}\sum_{k=1}^{n}f(q_k) \right| \leq \frac{\vep}{3} \label{ineq:6}
     \end{align}
     Similarly,
     \begin{align}
-        \frac{1}{2\pi} \left| \int_{0}^{2\pi} f(x) dx - \int_{0}^{2\pi}\mathbbm{1}_{[c,d]}(x)dx \right| \leq \frac{\vep}{3} \label{ineq:7}
+        \frac{1}{2\pi} \left| \int_{0}^{2\pi} f(x) dx - \int_{0}^{2\pi}\indi{1}_{[c,d]}(x)dx \right| \leq \frac{\vep}{3} \label{ineq:7}
     \end{align}
     Finally, because of our hypothesis, we have a large enough $N_2$ such that for all $n > N_2$,
     \begin{align}
@@ -718,9 +721,50 @@ As $N$ goes to infinity, the $\frac{W_N}{N^2}$ becomes $\frac{2}{q}$. But since 
 \newpage
 
 \section{Roth's theorem}
+The fact that the integral
+\begin{align*}
+    \int_{-\pi}^{\pi} e^{inx} dx
+\end{align*}
+is $1$ only when $n$ is $0$ and for other integral values of $n$, it is $0$, can be very useful. It is this very observation that forms the backbone of a general class of techniques in number theory called the \emph{circle method}. In a nutshell, this method lets one \emph{count}, by integrating an appropriately picked function over the unit circle, hence the name.
+
+Roth's theorem is question about existence of three term APs, but like many existence problems, it can be resolved by counting, and making sure your count doesn't end at $0$. Formally, the theorem states that given a number $\delta > 0$, called the density, there exists a enough $N$ such that any subset of $\{0,1, 2, 3, \ldots, N-1\}$ with a size greater than $\delta N$ contains a  three term arithmetic progression.  The key idea in the proof is to count the number of triples $x,y,z$ such that $x+z-2y$ is $0$. And this is where the circle method comes in, transforming a combinatorial problem into a problem in analysis.
 
 \subsection{Fourier analysis on finite cyclic groups}
-Blah
+Let's begin by endowing the set $[N]$\footnote{$[N]$ is shorthand for the set $\{0,1, 2,3 \ldots, N-1\}$} some additional structure, namely identifying it with the group $\znz$. Furthermore, with the counting measure $\znz$, we can integrate functions from $\znz$ to $\mathbb{C}$. And with the discrete metric, we have the topology on the space; we can finally do some analysis.
+
+Consider the set of functions from $\znz$ to $\mathbb{C}$. This clearly forms a Hilbert space, with the inner product being
+\begin{align*}
+   \iprod{f}{g} &= \frac{1}{N} \int_{\znz} f(x) \overline{g(x)} dx \\
+   &= \frac{1}{N} \sum_{k=0}^{N-1} f(k) \overline{g(k)}
+\end{align*}
+The next step would be to determine an orthonormal basis for the Hilbert space. It turns out that the set of homomorphisms from $\znz$ to $\mathbb{C}$ does form an orthonormal basis for the space. Define $h_r$ to be the following homomorphism
+\begin{align*}
+    h_r(k) = e^{\frac{2\pi i}{N}rk}
+\end{align*}
+Notice that
+\begin{align*}
+    \frac{1}{N}\int_{\znz} h_r(x) dx =
+    \begin{cases}
+        1 \hfill &\text{if $r=0$} \\
+        0 \hfill &\text{if $r \neq 0$}
+    \end{cases}
+\end{align*}
+The $r$\textsuperscript{th} Fourier coefficient of $f$ is defined as
+\begin{align*}
+    \widehat{f}(r) &= \iprod{f}{h_r}\\ 
+    &= \frac{1}{N} \sum_{k=0}^{N-1} f(k) e^{-\frac{2\pi i}{N}rk} 
+\end{align*}
+Hence, for any function $f$
+\begin{align*}
+    f(x) = \widehat{f}(0) h_0(x) + \widehat{f}(1) h_1(x) + \ldots + \widehat{f}(N-1) h_{N-1}(x)
+\end{align*}
+
+\subsection{Counting $\znz$ progressions}
+Consider a subset $A$ of $[N]$ of size $\delta N$. Identify $A$ as a subset of $\znz$ as well. We are looking for three term APs, or triples $(x,y,z)$ such that $x+z - 2y = 0$. The number of such triples will be given by
+\begin{align*}
+    S_0 &= \sum_{x,y,z \in A} \frac{1}{N} \int_{\znz} h_{x+z-2y}(x) dx \\
+    &= \frac{1}{N} \sum_{k=0}^{N-1} \sum_{x=0}^{N-1} \sum_{y=0}^{N-1} \sum_{z=0}^{N-1}
+\end{align*}
 
 \newpage
 
