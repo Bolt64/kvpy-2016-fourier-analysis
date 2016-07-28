@@ -31,7 +31,7 @@
 \renewcommand{\Re}{\mathrm{Re}}
 \newcommand{\znz}{\mathbb{Z}/N\mathbb{Z}}
 \newcommand{\iprod}[2]{\langle #1, #2 \rangle}
-\newcommand{\indi}[1]{\mathbbm{#1}}
+\newcommand{\indi}{\mathbbm{1}}
 
 \begin{document}
 
@@ -42,11 +42,11 @@
 \section{Convergence results for Fourier series}
 
 \subsection{A historical perspective}
-Fourier series made their first appearance in mathematics through the way of physics, as is the norm with a lot of classical analysis. In particular, they turned up in the analysis of the following differential equation:
+Fourier series made their first appearance in mathematics through the way of physics, as is the norm with a lot of classical analysis. In particular, they turned up in the analysis of the following differential equation
 \begin{align}
     \frac{\partial^2 u}{\partial r^2} + \frac{1}{r} \frac{\partial u}{\partial r} + \frac{1}{r^2} \frac{\partial^2 u}{\partial \theta^2} &= 0 \label{eq:1}
 \end{align}
-on the unit disc, with the following boundary conditions:
+on the unit disc, with the following boundary conditions
 \begin{align*}
     u(1, \theta) = f(\theta)
 \end{align*}
@@ -58,7 +58,7 @@ Once one makes the simplifying assumption that the solution is separable, i.e.
 \begin{align*}
     u(r, \theta) = a(r) \cdot b(\theta)
 \end{align*}
-equation \ref{eq:1} is easy to solve, and one sees that it has solutions of the form:
+equation \ref{eq:1} is easy to solve, and one sees that it has solutions of the form
 \begin{align*}
     u_n(r, \theta) = r^n e^{in\theta}
 \end{align*}
@@ -66,7 +66,7 @@ for all integers $n$. And finite linear combinations of the solutions $u_n$ are 
 \begin{align*}
     f(\theta) = \sum_{n = -N}^{N} \widehat{f}(n) e^{in\theta}
 \end{align*}
-then $\widehat{f}(n)$ is can be determined in the following manner:
+then $\widehat{f}(n)$ is can be determined in the following manner
 \begin{align}
     \widehat{f}(n) = \frac{1}{2\pi} \int_{-\pi}^{\pi} f(t) e^{-int} dt \label{eq:2}
 \end{align}
@@ -84,7 +84,7 @@ Before we go on to show that Fourier series converge under weaker notions of con
 \end{align*}
 
 \subsubsection{Convolution}
-For two continuous functions $f$ and $g$ on $T$, we can define a binary operation $\ast$:
+For two continuous functions $f$ and $g$ on $T$, we can define a binary operation $\ast$
 \begin{align*}
     (f \ast g)(x) = \int_{-\pi}^{\pi} f(x-t) g(t) dt
 \end{align*}
@@ -123,9 +123,9 @@ It follows that the operation is commutative (substitution of variables), associ
 %\end{proof}
 
 \subsubsection{Dirac sequences}
-We saw that there is no continuous function which acts as an identity for $\ast$ operation. However, there do exist sequences of functions, such that the sequence $\{f \ast g_n\}$ converges uniformly to $f$ as $n$ goes to infinity. Such a sequence $\{g_n\}$ is called a Dirac sequence. The formal definition of a Dirac sequence is the following:
+We saw that there is no continuous function which acts as an identity for $\ast$ operation. However, there do exist sequences of functions, such that the sequence $\{f \ast g_n\}$ converges uniformly to $f$ as $n$ goes to infinity. Such a sequence $\{g_n\}$ is called a Dirac sequence. The formal definition of a Dirac sequence is the following
 \begin{defn}
-    A sequence of a continuous functions $\{g_n\}$ is called a Dirac sequence if it satisfies the following conditions:
+    A sequence of a continuous functions $\{g_n\}$ is called a Dirac sequence if it satisfies the following conditions
     \begin{enumerate}
         \item $g_n(x) \geq 0$ for all $n \in \mathbb{N}$ and all $x \in T$.
         \item $g_n(x) = g_n(-x)$ for all $n \in \mathbb{N}$ and all $x \in T$.
@@ -136,7 +136,7 @@ We saw that there is no continuous function which acts as an identity for $\ast$
         \end{align*}
     \end{enumerate}
 \end{defn}
-Following from the definition, one gets a useful theorem:
+Following from the definition, one gets a useful theorem
 \begin{thm}\label{th:1}
     If $\{g_n\}$ is a Dirac sequence, then for all continuous functions $f$, the sequence $\{f \ast g_n\}$ converges uniformly to $f$.
 \end{thm}
@@ -170,7 +170,7 @@ Following from the definition, one gets a useful theorem:
     \begin{align*}
         f(x_0) - \vep_2 \leq f(x) \leq f(x_0) + \vep_2
     \end{align*}
-    This lets us bound the second term in the following manner:
+    This lets us bound the second term in the following manner
     \begin{align*}
         (1- \vep_1)(f(x_0) - \vep_2) \leq \int_{-\delta}^{\delta} f(x_0 - t)g_n(t) dt \leq f(x_0) + \vep_2
     \end{align*}
@@ -194,7 +194,7 @@ This is a useful result because this will let us deal with the question of conve
 \subsubsection{Cesàro summability}
 We mentioned that for general continuous functions, their Fourier series need not converge uniformly, or even pointwise, to the function; weakening the notion of convergence lets the conjecture go through. A weaker notion of convergence for infinite sums is the notion of Cesàro summability.
 \begin{defn}
-    A sequence $\{x_n\}$ is said to be Cesàro summable if the following sequence $\{\sigma_n\}$ converges:
+    A sequence $\{x_n\}$ is said to be Cesàro summable if the following sequence $\{\sigma_n\}$ converges
     \begin{align*}
         \sigma_n = \frac{\sum_{k=1}^{n} s_k }{n}
     \end{align*}
@@ -226,11 +226,11 @@ The function $g_N$ we wanted was is this function
 \begin{align}
     g_N(t) = \frac{1}{2\pi} \frac{\sin\left( Nt + \frac{t}{2} \right)}{\sin\left( \frac{t}{2} \right)} \label{eq:5}
 \end{align}
-$g_N$ certainly is even, and its integral over $T$ is $1$, but it is not non-negative everywhere, hence it fails to form a Dirac sequence. Let's look at the Cesàro partial sums instead, and concentrates on the kernel corresponding to those, which are called Fejér kernels. Clearly, the kernel corresponding to the $N$\textsuperscript{th} Cesàro sum would be the following:
+$g_N$ certainly is even, and its integral over $T$ is $1$, but it is not non-negative everywhere, hence it fails to form a Dirac sequence. Let's look at the Cesàro partial sums instead, and concentrates on the kernel corresponding to those, which are called Fejér kernels. Clearly, the kernel corresponding to the $N$\textsuperscript{th} Cesàro sum would be the following
 \begin{align*}
     F_N = \frac{\sum_{n=1}^{N} g_n}{N} 
 \end{align*}
-Summing up the geometric progression once again, we get the following closed form expression for $F_N$:
+Summing up the geometric progression once again, we get the following closed form expression for $F_N$
 \begin{align*}
     F_N(t) &= \frac{1}{2N\pi} \frac{\sin^2 \left( \frac{Nt}{2} \right)}{\sin^2 \left( \frac{t}{2} \right)} \\
     & = \frac{1}{2N\pi} \frac{1 - \cos(nt)}{1 - \cos(t)}
@@ -414,7 +414,7 @@ But $S_N(\cdot)(0)$ is a continuous operator from the Banach space $C(T)$ with t
 \newpage
 
 \section{Weyl's equidistribution theorem}
-In the previous section, we saw how the idea of Fourier series emerged from a physical problem; the rest of the section was devoted to establishing firm foundations for the notion of Fourier series, especially those of convergence. With the foundational work done, one can look at the applications of the theory. In this and the subsequent section, we'll look at two theorems that use Fourier analysis; the surprising thing is that both these theorems are in number theory, which is as far away from the real world, i.e. physics, as possible, if one is to believe Hardy. The fact that one can use tools that emerged in the analysis of a physical system for solving problems in number theory is a testament to the power and versatility of the tool.
+In the previous section, we saw how the idea of Fourier series emerged from a physical problem; the rest of the section was devoted to establishing firm foundations for the notion of Fourier series, especially those of convergence. With the foundational work done, one can look at the applications of the theory. In this and the subsequent section, we'll look at two theorems that use Fourier analysis; the surprising thing is that both these theorems are in number theory, quite distant from physics, where Fourier analysis first emerged. The fact that one can use tools that emerged in the analysis of a physical system for solving problems in number theory is a testament to the power and versatility of the tool.
 
 In this section, we'll look at Weyl's equidistribution theorem, which informally states that a sequence of multiples of an irrational number modulo $1$ is equidistributed in the interval $[0,1]$.
 
@@ -426,14 +426,14 @@ We'll begin by formally defining what equidistributed sequences are.
         \item $q_n \in [a,b]$ for all $n \in \mathbb{N}$.
         \item For all subintervals $[c,d]$ of $[a,b]$
                 \begin{align*}
-                    \lim_{N \to \infty} \frac{1}{N} \sum_{k=1}^{N} \indi{1}_{[c,d]}(q_k) = \frac{d-c}{b-a}
+                    \lim_{N \to \infty} \frac{1}{N} \sum_{k=1}^{N} \indi_{[c,d]}(q_k) = \frac{d-c}{b-a}
                 \end{align*}
-                where $\indi{1}_{[c,d]}$ is the indicator function for the interval $[c,d]$.
+                where $\indi_{[c,d]}$ is the indicator function for the interval $[c,d]$.
     \end{itemize}
 \end{defn}
 For now, let's just focus on the interval $[0,2\pi]$, and look for equidistributed sequences in it. Observe that the second part of the above definition can be rewritten as
 \begin{align}
-    \lim\limits_{N \to \infty} \frac{1}{N} \sum_{k=1}^{N} \indi{1}_{[c,d]}(q_k) = \frac{1}{2\pi} \int_{0}^{2\pi} \indi{1}_{[c,d]}(x) dx \label{eq:6}
+    \lim\limits_{N \to \infty} \frac{1}{N} \sum_{k=1}^{N} \indi_{[c,d]}(q_k) = \frac{1}{2\pi} \int_{0}^{2\pi} \indi_{[c,d]}(x) dx \label{eq:6}
 \end{align}
 
 \subsection{Weyl's criterion for equidistribution}
@@ -473,7 +473,7 @@ The above definition for equidistributed sequences makes sense (in the manner th
     \end{align}
     Adding up inequalities \ref{ineq:3}, \ref{ineq:4}, and \ref{ineq:5}, we have the inequality we wanted.
     
-    Now for the converse statement. The key idea here is to approximate the indicator function $\indi{1}_{[c,d]}$ with an appropriate continuous function. For a given $\vep > 0$, consider the following continuous approximation for the function $\indi{1}_{[c,d]}$
+    Now for the converse statement. The key idea here is to approximate the indicator function $\indi_{[c,d]}$ with an appropriate continuous function. For a given $\vep > 0$, consider the following continuous approximation for the function $\indi_{[c,d]}$
     \begin{align*}
         f(x) =
         \begin{cases} 
@@ -485,23 +485,23 @@ The above definition for equidistributed sequences makes sense (in the manner th
     \end{align*}
     For all $x \in [0,2\pi]$, we have the following inequality for the function $f$
     \begin{align*}
-        \indi{1}_{[c,d]}(x) \leq f(x) \leq \indi{1}_{\left[ c- \frac{\vep}{8}, d+\frac{\vep}{8} \right]}(x) 
+        \indi_{[c,d]}(x) \leq f(x) \leq \indi_{\left[ c- \frac{\vep}{8}, d+\frac{\vep}{8} \right]}(x) 
     \end{align*}
     Rewriting the above inequality,
     \begin{align*}
-        \left| f(x) - \indi{1}_{[c,d]}(x) \right| \leq \indi{1}_{\left[ c-\frac{\vep}{8}, c \right]}(x) + \indi{1}_{\left[ d, d+\frac{\vep}{8} \right]}(x)
+        \left| f(x) - \indi_{[c,d]}(x) \right| \leq \indi_{\left[ c-\frac{\vep}{8}, c \right]}(x) + \indi_{\left[ d, d+\frac{\vep}{8} \right]}(x)
     \end{align*}
     This means there exists a large enough $N_1$, such that for all $n > N_1$
     \begin{align*}
-        \frac{1}{n} \sum_{k=1}^{n} \left( \indi{1}_{\left[ c-\frac{\vep}{8}, c \right]}(q_k) + \indi{1}_{\left[ d, d+\frac{\vep}{8} \right]}(q_k) \right) \leq \frac{\vep}{3}
+        \frac{1}{n} \sum_{k=1}^{n} \left( \indi_{\left[ c-\frac{\vep}{8}, c \right]}(q_k) + \indi_{\left[ d, d+\frac{\vep}{8} \right]}(q_k) \right) \leq \frac{\vep}{3}
     \end{align*}
     For that same $N_1$,
     \begin{align}
-        \left| \frac{1}{n}\sum_{k=1}^{n}\indi{1}_{[c,d]}(q_k) - \frac{1}{n}\sum_{k=1}^{n}f(q_k) \right| \leq \frac{\vep}{3} \label{ineq:6}
+        \left| \frac{1}{n}\sum_{k=1}^{n}\indi_{[c,d]}(q_k) - \frac{1}{n}\sum_{k=1}^{n}f(q_k) \right| \leq \frac{\vep}{3} \label{ineq:6}
     \end{align}
     Similarly,
     \begin{align}
-        \frac{1}{2\pi} \left| \int_{0}^{2\pi} f(x) dx - \int_{0}^{2\pi}\indi{1}_{[c,d]}(x)dx \right| \leq \frac{\vep}{3} \label{ineq:7}
+        \frac{1}{2\pi} \left| \int_{0}^{2\pi} f(x) dx - \int_{0}^{2\pi}\indi_{[c,d]}(x)dx \right| \leq \frac{\vep}{3} \label{ineq:7}
     \end{align}
     Finally, because of our hypothesis, we have a large enough $N_2$ such that for all $n > N_2$,
     \begin{align}
@@ -662,7 +662,7 @@ The main result of this section will show that given an irrational number $\alph
 \end{proof}
 
 \subsubsection{Bounding the complete sum\cite{weyl}}
-At the end of section \ref{sect:1}, we saw that all we need to do is to show that the following sum:
+At the end of section \ref{sect:1}, we saw that all we need to do is to show that the following sum
 \begin{align*}
     W_N = \sum_{d=1}^{N} \min\left( N, \frac{1}{\norm{2\alpha d}} \right)
 \end{align*}
@@ -727,10 +727,13 @@ The fact that the integral
 \end{align*}
 is $1$ only when $n$ is $0$ and for other integral values of $n$, it is $0$, can be very useful. It is this very observation that forms the backbone of a general class of techniques in number theory called the \emph{circle method}. In a nutshell, this method lets one \emph{count}, by integrating an appropriately picked function over the unit circle, hence the name.
 
-Roth's theorem is question about existence of three term APs, but like many existence problems, it can be resolved by counting, and making sure your count doesn't end at $0$. Formally, the theorem states that given a number $\delta > 0$, called the density, there exists a enough $N$ such that any subset of $\{0,1, 2, 3, \ldots, N-1\}$ with a size greater than $\delta N$ contains a  three term arithmetic progression.  The key idea in the proof is to count the number of triples $x,y,z$ such that $x+z-2y$ is $0$. And this is where the circle method comes in, transforming a combinatorial problem into a problem in analysis.
+Roth's theorem is question about existence of three term APs, but like many existence problems, it can be resolved by counting, and making sure your count doesn't end at $0$. Formally, the theorem states that given a number $\delta > 0$, called the density, there exists a large enough $N$ such that any subset of $\{0,1, 2, 3, \ldots, N-1\}$ with a size greater than $\delta N$ contains a  three term arithmetic progression.  The key idea in the proof is to count the number of triples $x,y,z$ such that $x+z-2y$ is $0$. And this is where the circle method comes in, transforming a combinatorial problem into a problem in analysis.
+
+\subsection{Sketch of proof}
+The key idea in the proof of Roth's theorem is that for a given $0 < \delta < 1$, and a large enough $N$, if a subset $A$ of $[N]$\footnote{$[N]$ is shorthand for the set $\{0,1, 2,3 \ldots, N-1\}$}, which has size $\delta N$ does not have a three term AP, then there exists a progression $B_1$ in $[N]$ such that the density of $A$ in $B_1$ is greater than $\delta$. Clearly, $A \cap B_1$ won't contain a three term AP either, so one iterates the argument again and again to get a sequence of nested sub progressions $B_1, B_2, \ldots B_k$ such that the density of $A$ in $B_k$ is at least $1$. But that would mean $B_k \subset A$, and if $|B_k| \geq 3$, we'll have a contradiction. So one picks a large enough $N$ such that $|B_k| \geq 3$, and that leads to the contradiction. Which means $A$ must have had a three term AP.
 
 \subsection{Fourier analysis on finite cyclic groups}
-Let's begin by endowing the set $[N]$\footnote{$[N]$ is shorthand for the set $\{0,1, 2,3 \ldots, N-1\}$} some additional structure, namely identifying it with the group $\znz$. Furthermore, with the counting measure $\znz$, we can integrate functions from $\znz$ to $\mathbb{C}$. And with the discrete metric, we have the topology on the space; we can finally do some analysis.
+Let's begin by endowing the set $[N]$ some additional structure, namely identifying it with the group $\znz$. Furthermore, with the counting measure $\znz$, we can integrate functions from $\znz$ to $\mathbb{C}$. And with the discrete metric, we have the topology on the space; we can finally do some analysis.
 
 Consider the set of functions from $\znz$ to $\mathbb{C}$. This clearly forms a Hilbert space, with the inner product being
 \begin{align*}
@@ -759,13 +762,171 @@ Hence, for any function $f$
     f(x) = \widehat{f}(0) h_0(x) + \widehat{f}(1) h_1(x) + \ldots + \widehat{f}(N-1) h_{N-1}(x)
 \end{align*}
 
-\subsection{Counting $\znz$ progressions}
-Consider a subset $A$ of $[N]$ of size $\delta N$. Identify $A$ as a subset of $\znz$ as well. We are looking for three term APs, or triples $(x,y,z)$ such that $x+z - 2y = 0$. The number of such triples will be given by
+\subsection{Counting progressions in $[N]$\cite{toronto}}
+\textbf{Note:} We'll call $(x,y,z)$ a progression in $\znz$ when $x+z=2y$ in the group $\znz$, and we'll call it a progression in $[N]$ when $x+y=2z$ in $\mathbb{Z}$.
+
+Consider a subset $A$ of $[N]$ of size $\delta N$. Identify $A$ as a subset of $\znz$ as well. We are looking for three term APs, or triples $(x,y,z)$ such that $x+z - 2y = 0$ in $\znz$. The number of such triples will be given by
 \begin{align*}
     S_0 &= \sum_{x,y,z \in A} \frac{1}{N} \int_{\znz} h_{x+z-2y}(x) dx \\
-    &= \frac{1}{N} \sum_{k=0}^{N-1} \sum_{x=0}^{N-1} \sum_{y=0}^{N-1} \sum_{z=0}^{N-1}
+    &= \sum_{x,y,z \in [N]} \frac{1}{N} \sum_{k=0}^{N-1} \indi_{A}(x) \indi_{A}(y) \indi_{A}(z) e^{-\frac{2\pi i}{N} k (x+z-2y)} \\
+    &= N^2 \sum_{k=0}^{N-1} \widehat{\indi_A}(k)^2 \widehat{\indi_A}(-2k)
 \end{align*}
+where $\indi_A$ is the indicator function of $A$. This counts the number of three term APs in the group $\znz$. But all the progressions in $\znz$ need not be progressions in $[N]$. But if we know that $x$ and $y$ belong to $\left[ \frac{N}{3}, \frac{2N}{3} \right]$, and $x+z-2y=0$ in the group, then $x,y,z$ form an AP in $[N]$. Define the set $M_A$ to be $\left[ \frac{N}{3}, \frac{2N}{3} \right] \cap A$. Then, a lower bound for the number of three term APs in $[N]$ is given by
+\begin{align*}
+    S &= \sum_{x,y \in M_A} \sum_{z \in A}  \frac{1}{N} \int_{\znz} h_{x+z-2y}(x) dx \\
+    &= N^2 \sum_{k=0}^{N-1} \widehat{\indi_A}(k) \widehat{\indi_{M_A}}(k) \widehat{\indi_{M_A}}(-2k) \\
+    &= N^2 \left(\widehat{\indi_A}(0) \widehat{\indi_{M_A}}(0) \widehat{\indi_{M_A}}(0) + \sum_{k=1}^{N-1} \widehat{\indi_A}(k) \widehat{\indi_{M_A}}(k) \widehat{\indi_{M_A}}(-2k) \right) \\
+    &= \delta |M_A|^2 + N^2 \sum_{k=1}^{N-1} \widehat{\indi_A}(k) \widehat{\indi_{M_A}}(k) \widehat{\indi_{M_A}}(-2k)
+\end{align*}
+We want to show that $[N]$ contains at least one three term $AP$. But the expression for $S$ also counts triples like $(x,x,x)$, which we don't want to count as APs. $A$ contains $|A|$ such triples. Hence we'd like $S$ to be greater than $|A|$ to show the existence of an AP. We have the following lemma
+\begin{lem}\label{lem:3}
+    If $N$ is odd, $\widehat{\indi_A}(k) < \vep$ for all $k \neq 0$, where $\vep = \frac{\delta^2}{8}$, and $|M_A| \geq \frac{\delta N}{4}$, then $S \geq \frac{\delta^3 N^2}{32}$.
+\end{lem}
 
+\begin{proof}
+    We know that
+    \begin{align*}
+        S = \delta |M_A|^2 + N^2 \sum_{k=1}^{N-1} \widehat{\indi_A}(k) \widehat{\indi_{M_A}}(k) \widehat{\indi_{M_A}}(-2k)
+    \end{align*}
+    We can bound the second term in the sum using Cauchy-Schwarz inequality and Plancherel's identity.
+    \begin{align*}
+        \left| \sum_{k=1}^{N-1} \widehat{\indi_A}(k) \widehat{\indi_{M_A}}(k) \widehat{\indi_{M_A}}(-2k) \right|
+        &\leq \vep \sum_{k=1}^{N-1}\left| \widehat{\indi_{M_A}}(k) \widehat{\indi_{M_A}}(-2k) \right| \\
+        &\leq \vep \left( \sum_{k=1}^{N-1} \left| \widehat{\indi_A}(k) \right|^2 \right)^{\frac{1}{2}} \left( \sum_{k=1}^{N-1} \left| \widehat{\indi_A}(-2k) \right|^2 \right)^{\frac{1}{2}} \\
+        &= \vep \left( \sum_{k=1}^{N-1} \left| \widehat{\indi_A}(k) \right|^2 \right) \\
+        &= \vep \left( \sum_{k=1}^{N-1} \left| \indi_A(k) \right|^2 \right) \\
+        &= \vep |M_A|
+    \end{align*}
+    From this, we get that
+    \begin{align*}
+        S \geq \delta |M_A|^2 - \vep N^2 |M_A|
+    \end{align*}
+    Since $|M_A| \geq \frac{\delta N}{4}$, and $\vep = \frac{\delta^2}{8}$, we get
+    \begin{align*}
+        S \geq \frac{\delta^3 N^2}{32}
+    \end{align*}
+\end{proof}
+This lemma shows that if we pick an $N > \frac{32}{\delta^2}$, any subset $A$ which satisfies the hypotheses of the lemma will contain a $3$-AP.
+
+\subsection{Density incrementation}
+Now consider the contrapositive of lemma \ref{lem:3}. It says that if a subset $A$ of $[N]$ does not contain a $3$-AP, then one of the following conditions must hold
+\begin{enumerate}
+    \item For some non-zero $k$, $\widehat{\indi_A}(k) > \vep$, where $\vep = \frac{\delta^2}{8}$.
+    \item $|M_A| < \frac{\delta N}{4}$.
+\end{enumerate}
+We don't consider the third condition where $N$ could be less than $\frac{32}{\delta^2}$ because we can make $N$ as large as we want. Consider the second condition. If the density of $A$ in $\left[ \frac{N}{3}, \frac{2N}{3} \right]$ is less than $\frac{\delta N}{4}$, then by the pigeonhole principle, $A$ has a density greater than $\delta + \frac{\delta}{8}$ in either $\left[ 0, \frac{N}{3} \right]$ or $\left[ \frac{2N}{3}, N \right]$. To put it more generally, there exists an AP $Z$ in $[N]$ of length greater than or equal to $\frac{N}{3}$ such that the density of $A$ in $Z$ is $\delta + \frac{\delta}{8}$, which is greater than the original density. Specifically, the progression $Z$ in this case is either the interval $\left[ 0, \frac{N}{3} \right]$ or $\left[ \frac{2N}{3}, N \right]$.
+
+We will show even when $\widehat{\indi_A}(k) > \vep$ for some non-zero $k$, there exists a sufficiently long progression in $[N]$ such that the density of $A$ in that subprogression is greater than $\delta$.
+
+\begin{lem} \label{dens:1}
+    If $\widehat{\indi_A}(r) > \gamma$ for some $r \neq 0$, then there exists a $\znz$ subprogression $B$ of length at least $\frac{\sqrt{N}}{8}$ such that $|A \cap B| \geq \left( \delta + \frac{\gamma}{4} \right)|B| $.
+\end{lem}
+
+\begin{proof}
+    Consider the pairs of points
+    \begin{align*}
+        (0, 0), (1, r), (2, 2r), \ldots, (N-1, (N-1)r)
+    \end{align*}
+    These points lie in the square $[0, N] \times [0, N]$. Divide this square into $\lfloor \sqrt{N} \rfloor^2$ squares (where $\lfloor x \rfloor$ is the greatest integer \emph{less} than $x$) of side length $l = \frac{N}{\lfloor \sqrt{N} \rfloor}$. Since there are less than $N$ squares, two of the points must lie in the same square. That means for some $d \leq l$
+    \begin{align*}
+        rd \leq l\ (\text{mod } N)
+    \end{align*}
+    Let $B'$ be an AP of length $ \left\lfloor \frac{\lfloor N \rfloor}{2\pi} \right\rfloor$ in $\znz$
+    \begin{align*}
+        \ldots , -3d, -2d, -d, 0, d, 2d, 3d, \ldots
+    \end{align*}
+    Since $|B'|d$ is less than $|B'|l$, which in turn is less than $\frac{N}{2\pi}$, which means that it can be written as a union of two disjoint APs in $[N]$.
+
+    Consider the following inequality:
+    \begin{align*}
+        \left|N \widehat{\indi}_{B'}(r)  - |B'|\right| &= \left| \sum_{\znz} \indi_{B'}(x)\left(e^{-\frac{2\pi i}{N}rx} - 1 \right) \right| \\
+        &= \left| \sum_{|x| \leq \frac{1}{2} |B'|} \left(e^{-\frac{2\pi i}{N}rdx} - 1 \right) \right| \\
+        &\leq \sum_{|x| \leq \frac{1}{2} |B'|} \left| e^{-\frac{2\pi i}{N}rdx} - 1 \right| \\
+        &\leq 2 \sum_{x=0}^{\frac{|B'|}{2}} \frac{2\pi}{N} rdx \\
+        &\leq \frac{4\pi l}{N} \sum_{x=0}^{\frac{|B'|}{2}} x \\
+        &\leq |B'| \frac{|B'| \pi l}{N} \\
+        &\leq \frac{|B'|}{2}
+    \end{align*}
+    This means
+    \begin{align*}
+        \left|N \widehat{\indi_B}(r) \right| \geq \frac{|B'|}{2}
+    \end{align*}
+    The required progression, in which the density of $A$ will be greater than $\left( \delta + \frac{\gamma}{4} \right)$, will be a translation of $B'$, i.e. $B = B' + c$ for some constant $c$.
+    
+    Define $f_A$ to be the balanced indicator of $A$, i.e.
+    \begin{align*}
+        f_A(k) = \indi_A(k) - \delta
+    \end{align*}
+    Notice that the mean of $f_A$ over $[N]$ is $0$. Furthermore, if 
+    \begin{align*} 
+        \sum_{k=0}^{N-1} f_A(k) \indi_B(k) \geq \kappa |B|
+    \end{align*}
+    then
+    \begin{align*}
+        |A \cap B| \geq \left( \delta + \kappa \right)|B|
+    \end{align*}
+    and vice versa. Here's why.
+    \begin{align*}
+        \sum_{k=0}^{N-1} f_A(k) \indi_B(k) &= \sum_{k \in B} f_A(k) \\
+        &= (1-\delta)|A \cap B| - \delta (|B| - |A \cap B|) \\
+        &= |A \cap B| - \delta |B| 
+    \end{align*}
+    $|A \cap B| - \delta|B|$ will be greater than $\kappa |B|$ iff $|A \cap B| > (\delta + \kappa)|B|$. Now our problem reduces to determining for what $c$, $\sum_{k=0}^{N-1} f_A(k) \indi_{B'}(k-c)$ is greater than or equal to $\frac{\gamma}{4} |B'|$. Define $G(c)$ to be
+    \begin{align*}
+        G(c) = \sum_{k=0}^{N-1} f_A(k) \indi_{B'}(k-c)
+    \end{align*}
+    The Fourier transform of $G$ is the following:
+    \begin{align*}
+        \widehat{G}(r) = N \widehat{f_A}(r) \widehat{\indi_{B'}}(r)
+    \end{align*}
+    And we know that
+    \begin{align*}
+        \sum_{[N]} |G(c)| \geq \left| \widehat{G}(r) \right| \geq \frac{1}{2}\gamma N |B'|
+    \end{align*}
+    And since the mean of $G$ over $[N]$ is $0$
+    \begin{align*}
+        \sum_{[N]} G(c) + |G(c)| \geq \frac{1}{2}\gamma N |B'|
+    \end{align*}
+    For some $c_0$
+    \begin{align*}
+        G(c_0) + |G(c_0)| \geq \frac{1}{2} \gamma |B'|
+    \end{align*}
+    Hence, $G(c_0) \geq \frac{1}{4}\gamma$
+    
+    The progression $B = B' + c_0$ is the one that satisfies our requirements.
+\end{proof}
+
+\begin{lem} \label{dens:2}
+    If $[N]$ has a $\znz$ progression $B$ of length $\frac{\sqrt{N}}{8}$, such that the density of $A$ in $B$ is greater than or equal to $\delta + \frac{\gamma}{4}$, and it is a union of two disjoint $[N]$ progressions, then there exists a progression $P$ in $[N]$ such that $|P| \geq \frac{\gamma}{8} |B|$ such that $A$ has density $\delta + \frac{\gamma}{8}$ in $P$.
+\end{lem}
+
+\begin{proof}
+    Write $B$ as $P_1 \sqcup P_2$, where $P_1$ and $P_2$ are disjoint $[N]$ progressions, and $|P_1| \leq |P_2|$. If $|P_1| \leq \frac{\gamma}{8} |B|$, then
+    \begin{align*}
+        |A \cap P_2| &\geq |A \cap B| - |P_1|\\
+        &\geq \left( \delta + \frac{\gamma}{4} \right)|B| - P_1 \\
+        &\geq \left( \delta + \frac{\gamma}{8} \right)|B| \\
+        &\geq \left( \delta + \frac{\gamma}{8} \right)|P_2|
+    \end{align*}
+    One the other hand, if $|P_1| > \frac{\gamma}{8}$, then one of $A $must have density $\delta + \frac{\gamma}{4}$ on one of $P_1$ or $P_2$.
+\end{proof}
+
+With the previous lemmas, we can finally state in full the density incrementation theorem.
+\begin{thm}
+    Given $0 < \delta < 1$, and $N > \frac{32}{\delta^2}$, and a subset $A$ of $[N]$ of size $\delta N$, if for some non-zero $k$, $\widehat{\indi_A}(k) > \frac{\delta^2}{8}$ or $\left| \left[ \frac{N}{3}, \frac{2N}{3} \right] \cap A \right| < \frac{\delta N}{4}$, then there exists a progression in $[N]$ of length at least $\frac{\delta^2 \sqrt{N}}{512}$ such that the density of $A$ in the progression is at least $\delta + \frac{\delta^2}{64}$.
+\end{thm}
+
+\begin{proof}
+    Follows from lemmas \ref{dens:1} and \ref{dens:2}.
+\end{proof}
+
+\subsection{Iterating the density incrementation argument}
+The final step in the proof of Roth's theorem is to increment the density until one reaches a sub progression in which $A$ has density $1$. If the length of that sub progression is greater than $3$, then we're done. After each iteration, the density grows by at least $\frac{\delta^2}{64}$, hence after $k = \frac{64}{\delta^2} \left( 1 - \delta \right)$ steps, the density will be at least $1$. We just need to pick a large enough $N$ such that the sub progression after $k$ steps has at least $3$ elements. We want
+\begin{align*}
+    \frac{\delta^{2k} N^{\frac{1}{2^k}}}{512^k} &\geq 3 \\
+    N &\geq 3^{2^k} \left( \frac{512}{\delta^2} \right)^{2^k \cdot k}
+\end{align*} 
+Substituting the given value of $k$, we get our lower bound on $N$, and that completes the proof.
 \newpage
 
 
