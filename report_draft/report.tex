@@ -11,7 +11,19 @@
 
 \usepackage{bbm}
 
-\usepackage{amsmath, amsfonts, amssymb, amsthm}
+\usepackage{titling}
+
+\newcommand{\subtitle}[1]{%
+    \posttitle{%
+        \par\end{center}
+    \begin{center}\large#1\end{center}
+    \vskip0.5em}%
+}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{lem}[thm]{Lemma}
 \newtheorem{prop}[thm]{Proposition}
@@ -23,6 +35,7 @@
 \newtheorem{defn}{Definition}[section]
 
 \title{Fourier Analysis: \\ Some results and applications}
+\subtitle{The work in this report was done under the guidance of Prof. Manjunath Krishnapur}
 \author{Sayantan Khan}
 \date{July 2016}
 
@@ -599,7 +612,7 @@ is $o(n)$ for all integers $n$, but since $\alpha$ is irrational, it suffices to
     \begin{align*}
         \left| \sum_{k=1}^{N} e(n\theta) \right| &\leq \frac{2}{\left| 1- e(\theta) \right|} \\
         &= \frac{1}{\left| \sin(\pi \theta) \right|}\\
-        &\leq \frac{1}{\norm{\theta}}
+        &\leq \frac{1}{\norm{\theta}} &\qedhere
     \end{align*}
 \end{proof}
  
@@ -647,7 +660,7 @@ The main result of this section will show that given an irrational number $\alph
     \end{align*}
     And since $q < N+1$
     \begin{align*}
-        \left| \alpha - \frac{p}{q} \right| < \frac{1}{q^2}
+        \left| \alpha - \frac{p}{q} \right| < \frac{1}{q^2} &\qedhere
     \end{align*}
 \end{proof}
 
@@ -714,7 +727,7 @@ is in $o(N^2)$.
     \end{align*}
     Now we split up the range of summation, i.e. the interval $[1, N]$ into intervals of length $\frac{q}{2}$. To compute the sum over each of these intervals, we'll use lemma \ref{lem:2} with $r = 2q$. We'll have $\frac{2N}{q}$ such intervals, over each of which, the sum will be be bounded by $\left( 2N +4q(\log(N) +2) \right)$. The complete bound is hence
     \begin{align*}
-        W_N \leq \left( \frac{2N}{q}\right) \left( 2N +4q(\log(N) +2) \right)
+        W_N \leq \left( \frac{2N}{q}\right) \left( 2N +4q(\log(N) +2) \right) &\qedhere
     \end{align*}
 \end{proof}
 As $N$ goes to infinity, the $\frac{W_N}{N^2}$ becomes $\frac{2}{q}$. But since $\alpha$ is irrational, $q$ can be as large as possible. This shows that $W_N$ is in $o(N^2)$.
@@ -731,7 +744,7 @@ is $1$ only when $n$ is $0$ and for other integral values of $n$, it is $0$, can
 Roth's theorem is question about existence of three term APs, but like many existence problems, it can be resolved by counting, and making sure your count doesn't end at $0$. Formally, the theorem states that given a number $\delta > 0$, called the density, there exists a large enough $N$ such that any subset of $\{0,1, 2, 3, \ldots, N-1\}$ with a size greater than $\delta N$ contains a  three term arithmetic progression.  The key idea in the proof is to count the number of triples $x,y,z$ such that $x+z-2y$ is $0$. And this is where the circle method comes in, transforming a combinatorial problem into a problem in analysis.
 
 \subsection{Sketch of proof}
-The key idea in the proof of Roth's theorem is that for a given $0 < \delta < 1$, and a large enough $N$, if a subset $A$ of $[N]$\footnote{$[N]$ is shorthand for the set $\{0,1, 2,3 \ldots, N-1\}$}, which has size $\delta N$ does not have a three term AP, then there exists a progression $B_1$ in $[N]$ such that the density of $A$ in $B_1$ is greater than $\delta$. Clearly, $A \cap B_1$ won't contain a three term AP either, so one iterates the argument again and again to get a sequence of nested sub progressions $B_1, B_2, \ldots B_k$ such that the density of $A$ in $B_k$ is at least $1$. But that would mean $B_k \subset A$, and if $|B_k| \geq 3$, we'll have a contradiction. So one picks a large enough $N$ such that $|B_k| \geq 3$, and that leads to the contradiction. Which means $A$ must have had a three term AP.
+The key idea in the proof of Roth's theorem is that for a given $0 < \delta < 1$, and a large enough $N$, if a subset $A$ of $[N]$\footnote{$[N]$ is shorthand for the set $\{0,1, 2,3 \ldots, N-1\}$}, which has size $\delta N$ does not have a three term AP, then there exists a progression $B_1$ in $[N]$ such that the density of $A$ in $B_1$ is greater than $\delta$. Clearly, $A \cap B_1$ won't contain a three term AP either, so one iterates the argument again and again to get a sequence of nested sub progressions $B_1, B_2, \ldots B_k$ such that the density of $A$ in $B_k$ is at least $1$. But that would mean $B_k = A$, and if $|B_k| \geq 3$, we'll have a contradiction. So one picks a large enough $N$ such that $|B_k| \geq 3$, and that leads to the contradiction. Which means $A$ must have had a three term AP.
 
 \subsection{Fourier analysis on finite cyclic groups}
 Let's begin by endowing the set $[N]$ some additional structure, namely identifying it with the group $\znz$. Furthermore, with the counting measure $\znz$, we can integrate functions from $\znz$ to $\mathbb{C}$. And with the discrete metric, we have the topology on the space; we can finally do some analysis.
@@ -804,7 +817,7 @@ We want to show that $[N]$ contains at least one three term $AP$. But the expres
     \end{align*}
     Since $|M_A| \geq \frac{\delta N}{4}$, and $\vep = \frac{\delta^2}{8}$, we get
     \begin{align*}
-        S \geq \frac{\delta^3 N^2}{32}
+        S \geq \frac{\delta^3 N^2}{32} &\qedhere
     \end{align*}
 \end{proof}
 This lemma shows that if we pick an $N > \frac{32}{\delta^2}$, any subset $A$ which satisfies the hypotheses of the lemma will contain a $3$-AP.
@@ -909,7 +922,7 @@ We will show even when $\widehat{\indi_A}(k) > \vep$ for some non-zero $k$, ther
         &\geq \left( \delta + \frac{\gamma}{8} \right)|B| \\
         &\geq \left( \delta + \frac{\gamma}{8} \right)|P_2|
     \end{align*}
-    One the other hand, if $|P_1| > \frac{\gamma}{8}$, then one of $A $must have density $\delta + \frac{\gamma}{4}$ on one of $P_1$ or $P_2$.
+    One the other hand, if $|P_1| > \frac{\gamma}{8}$, then one of $A$ must have density $\delta + \frac{\gamma}{4}$ on one of $P_1$ or $P_2$.
 \end{proof}
 
 With the previous lemmas, we can finally state in full the density incrementation theorem.
